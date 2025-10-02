@@ -13,14 +13,12 @@ export default function HeaderWithNav({ locationName, location }) {
   const buttonText = isPalmDesert ? 'text-palm-desert-600' : 'text-loma-linda-600'
   const buttonHover = isPalmDesert ? 'hover:bg-palm-desert-50' : 'hover:bg-loma-linda-50'
   
-  // Book Appointment - Dark blue/green
-  const primaryBtnBg = isPalmDesert ? 'bg-blue-700' : 'bg-green-700'
-  const primaryBtnHover = isPalmDesert ? 'hover:bg-blue-800' : 'hover:bg-green-800'
+  // Action button classes
+  const primaryBtnBg = isPalmDesert ? 'bg-palm-desert-800' : 'bg-loma-linda-800'
+  const primaryBtnHover = isPalmDesert ? 'hover:bg-palm-desert-900' : 'hover:bg-loma-linda-900'
   
-  // Make Payment - Sky blue/Yellow
-  const paymentBtnBg = isPalmDesert ? 'bg-sky-400' : 'bg-yellow-400'
-  const paymentBtnHover = isPalmDesert ? 'hover:bg-sky-500' : 'hover:bg-yellow-500'
-  const paymentBtnText = isPalmDesert ? 'text-white' : 'text-gray-900'
+  const paymentBtnBg = isPalmDesert ? 'bg-palm-desert-400' : 'bg-loma-linda-400'
+  const paymentBtnHover = isPalmDesert ? 'hover:bg-palm-desert-500' : 'hover:bg-loma-linda-500'
 
   return (
     <>
@@ -52,7 +50,7 @@ export default function HeaderWithNav({ locationName, location }) {
               </div>
               <a 
                 href="#payment" 
-                className={`${paymentBtnBg} ${paymentBtnHover} ${paymentBtnText} px-3 py-1 rounded transition-colors font-medium`}
+                className={`${paymentBtnBg} ${paymentBtnHover} text-white px-3 py-1 rounded transition-colors font-medium`}
               >
                 Make Payment
               </a>
@@ -185,7 +183,7 @@ export default function HeaderWithNav({ locationName, location }) {
                 </a>
                 <a 
                   href="#payment"
-                  className={`block text-center ${paymentBtnBg} ${paymentBtnHover} ${paymentBtnText} px-4 py-3 rounded-lg transition-colors font-medium`}
+                  className={`block text-center ${paymentBtnBg} ${paymentBtnHover} text-white px-4 py-3 rounded-lg transition-colors font-medium`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Make Payment
