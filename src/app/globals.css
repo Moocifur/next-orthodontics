@@ -1,26 +1,69 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Palm Desert color scheme (blue theme) */
+    --palm-desert-50: 239 246 255;
+    --palm-desert-100: 219 234 254;
+    --palm-desert-200: 191 219 254;
+    --palm-desert-300: 147 197 253;
+    --palm-desert-400: 96 165 250;
+    --palm-desert-500: 59 130 246;
+    --palm-desert-600: 37 99 235;
+    --palm-desert-700: 29 78 216;
+    --palm-desert-800: 30 64 175;
+    --palm-desert-900: 30 58 138;
+
+    /* Loma Linda color scheme (green theme) */
+    --loma-linda-50: 240 253 244;
+    --loma-linda-100: 220 252 231;
+    --loma-linda-200: 187 247 208;
+    --loma-linda-300: 134 239 172;
+    --loma-linda-400: 74 222 128;
+    --loma-linda-500: 34 197 94;
+    --loma-linda-600: 22 163 74;
+    --loma-linda-700: 21 128 61;
+    --loma-linda-800: 22 101 52;
+    --loma-linda-900: 20 83 45;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  /* Palm Desert background colors */
+  .bg-palm-desert-50 { background-color: rgb(var(--palm-desert-50)); }
+  .bg-palm-desert-600 { background-color: rgb(var(--palm-desert-600)); }
+  .bg-palm-desert-800 { background-color: rgb(var(--palm-desert-800)); }
+  .bg-palm-desert-900 { background-color: rgb(var(--palm-desert-900)); }
+  
+  /* Palm Desert text colors */
+  .text-palm-desert-600 { color: rgb(var(--palm-desert-600)); }
+  
+  /* Palm Desert hover states */
+  .hover\:bg-palm-desert-50:hover { background-color: rgb(var(--palm-desert-50)); }
+  .hover\:bg-palm-desert-700:hover { background-color: rgb(var(--palm-desert-700)); }
+  
+  /* Loma Linda background colors */
+  .bg-loma-linda-50 { background-color: rgb(var(--loma-linda-50)); }
+  .bg-loma-linda-600 { background-color: rgb(var(--loma-linda-600)); }
+  .bg-loma-linda-800 { background-color: rgb(var(--loma-linda-800)); }
+  .bg-loma-linda-900 { background-color: rgb(var(--loma-linda-900)); }
+  
+  /* Loma Linda text colors */
+  .text-loma-linda-600 { color: rgb(var(--loma-linda-600)); }
+  
+  /* Loma Linda hover states */
+  .hover\:bg-loma-linda-50:hover { background-color: rgb(var(--loma-linda-50)); }
+  .hover\:bg-loma-linda-700:hover { background-color: rgb(var(--loma-linda-700)); }
+  
+  /* Gradient colors for Palm Desert */
+  .from-palm-desert-600 { --tw-gradient-from: rgb(var(--palm-desert-600)) var(--tw-gradient-from-position); --tw-gradient-to: rgb(var(--palm-desert-600) / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .to-palm-desert-800 { --tw-gradient-to: rgb(var(--palm-desert-800)) var(--tw-gradient-to-position); }
+  
+  /* Gradient colors for Loma Linda */
+  .from-loma-linda-600 { --tw-gradient-from: rgb(var(--loma-linda-600)) var(--tw-gradient-from-position); --tw-gradient-to: rgb(var(--loma-linda-600) / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .to-loma-linda-800 { --tw-gradient-to: rgb(var(--loma-linda-800)) var(--tw-gradient-to-position); }
 }
