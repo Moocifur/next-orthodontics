@@ -164,7 +164,7 @@ export default function EnhancedHero({ locationName, subtitle, location }) {
       </section>
 
       {/* SANDY ACTIONS SECTION */}
-      <section className={`${isPalmDesert ? 'bg-yellow-600' : 'bg-yellow-500'} py-12 md:py-20 relative overflow-visible`}>
+      <section className={`${isPalmDesert ? 'bg-orange-200' : 'bg-orange-200'} py-12 md:py-20 relative overflow-visible`}>
         <div className="container mx-auto px-5">
           <div className="flex flex-wrap justify-center gap-5 md:gap-8 relative z-10">
             

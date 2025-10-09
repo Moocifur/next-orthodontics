@@ -1,6 +1,8 @@
 import HeaderWithNav from '@/components/HeaderWithNav'
 import Hero from '@/components/Hero'
-import ServiceCard from '@/components/ServiceCard'
+import DoctorProfile from '@/components/DoctorProfile'
+import Service from '@/components/Service'
+import Insurance from '@/components/Insurance'
 import ContactForm from '@/components/ContactForm'
 import Footer from '@/components/Footer'
 
@@ -18,7 +20,9 @@ export default function PalmDesert() {
         location="palm-desert"
       />
 
-      <section id="about" className="py-16 bg-white">
+      <DoctorProfile location="palm-desert" />
+
+      {/* <section id="about" className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <h3 className="text-3xl font-bold text-gray-800 mb-6">
             About Our Palm Desert Office
@@ -33,9 +37,9 @@ export default function PalmDesert() {
             is here to help you achieve your perfect smile.
           </p>
         </div>
-      </section>
+      </section> */}
 
-      <section id="services" className="py-16 bg-palm-desert-50">
+      {/* <section id="services" className="py-16 bg-palm-desert-50">
         <div className="max-w-6xl mx-auto px-6">
           <h3 className="text-3xl font-bold text-gray-800 mb-8 text-center">
             Our Services
@@ -58,7 +62,10 @@ export default function PalmDesert() {
             />
           </div>
         </div>
-      </section>
+      </section> */}
+      <Service location="palm-desert" />
+
+      <Insurance location="paln-desert" />
 
       <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-6">

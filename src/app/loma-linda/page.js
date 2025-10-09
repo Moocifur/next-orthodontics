@@ -1,6 +1,7 @@
 import HeaderWithNav from '@/components/HeaderWithNav'
 import Hero from '@/components/Hero'
-import ServiceCard from '@/components/ServiceCard'
+import Service from '@/components/Service'
+import Insurance from '@/components/Insurance'
 import ContactForm from '@/components/ContactForm'
 import Footer from '@/components/Footer'
 
@@ -18,7 +19,7 @@ export default function LomaLinda() {
         location="loma-linda"
       />
 
-      <section className="py-16 bg-white">
+      {/* <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <h3 className="text-3xl font-bold text-gray-800 mb-6">
             About the Wire Wagon
@@ -34,9 +35,9 @@ export default function LomaLinda() {
             quality care wherever we meet you.
           </p>
         </div>
-      </section>
+      </section> */}
 
-      <section className="py-16 bg-loma-linda-50">
+      {/* <section className="py-16 bg-loma-linda-50">
         <div className="max-w-6xl mx-auto px-6">
           <h3 className="text-3xl font-bold text-gray-800 mb-8 text-center">
             Our Services
@@ -59,7 +60,11 @@ export default function LomaLinda() {
             />
           </div>
         </div>
-      </section>
+      </section> */}
+
+      <Service location="loma-linda" />
+
+      <Insurance location="loma-linda" />
 
       <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-6">
