@@ -4,22 +4,29 @@ export default function EnhancedHero({ locationName, subtitle, location }) {
   return (
     <>
       {/* HERO SECTION */}
-      <section className={`relative overflow-hidden ${isPalmDesert ? 'bg-gradient-to-r from-green-800 to-green-700' : 'bg-sky-300'} py-16 md:py-20`}>
-        {/* Decorative drape at top - Replace with your drape.png image */}
-        <div 
-          className={`absolute left-0 w-full h-80 pointer-events-none z-10 ${isPalmDesert ? 'opacity-90' : 'opacity-70'}`}
-          style={{
-            backgroundImage: 'url("/images/drape.png")',
-            backgroundRepeat: 'repeat-x',
-            backgroundPosition: 'top center',
-            backgroundSize: '20% auto',
-            top: '0px'
-          }}
-        />
-        
-        {/* Subtle background overlay for Loma Linda */}
-        {!isPalmDesert && (
-          <div className="absolute inset-0 bg-white/10 opacity-30 z-10" />
+      <section 
+        className={`relative overflow-hidden py-16 md:py-20 ${
+          isPalmDesert ? 'bg-gradient-to-r from-green-800 to-green-700' : ''
+        }`}
+        style={!isPalmDesert ? {
+          backgroundImage: 'url("/images/hero-background.png")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        } : {}}
+      >
+        {/* Decorative drape at top - Palm Desert only */}
+        {isPalmDesert && (
+          <div 
+            className="absolute left-0 w-full h-80 pointer-events-none z-10 opacity-90"
+            style={{
+              backgroundImage: 'url("/images/drape.png")',
+              backgroundRepeat: 'repeat-x',
+              backgroundPosition: 'top center',
+              backgroundSize: '20% auto',
+              top: '0px'
+            }}
+          />
         )}
         
         <div className="container mx-auto px-5 relative z-20 max-w-6xl">
@@ -147,20 +154,20 @@ export default function EnhancedHero({ locationName, subtitle, location }) {
           )}
         </div>
 
-        {/* Bottom landscape decoration - Desert/Beach scenery */}
-        <div className="absolute bottom-0 left-0 right-0 z-30 w-full">
-          <div 
-            className="w-full h-36"
-            style={{
-              backgroundImage: isPalmDesert 
-                ? 'url("/images/top-desert.png")'
-                : 'url("/images/top-beach.png")',
-              backgroundSize: 'auto 150px',
-              backgroundPosition: 'bottom center',
-              backgroundRepeat: 'repeat-x'
-            }}
-          />
-        </div>
+        {/* Bottom landscape decoration - Palm Desert only */}
+        {isPalmDesert && (
+          <div className="absolute bottom-0 left-0 right-0 z-30 w-full">
+            <div 
+              className="w-full h-36"
+              style={{
+                backgroundImage: 'url("/images/top-desert.png")',
+                backgroundSize: 'auto 150px',
+                backgroundPosition: 'bottom center',
+                backgroundRepeat: 'repeat-x'
+              }}
+            />
+          </div>
+        )}
       </section>
 
       {/* SANDY ACTIONS SECTION */}
