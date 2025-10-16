@@ -3,8 +3,8 @@ export default function EnhancedHero({ locationName, subtitle, location }) {
   
   return (
     <section 
-      className={`relative overflow-hidden py-16 md:py-20 ${
-        isPalmDesert ? 'bg-gradient-to-r from-green-800 to-green-700' : ''
+      className={`relative overflow-hidden ${
+        isPalmDesert ? 'py-24 md:py-32 bg-gradient-to-r from-green-800 to-green-700' : 'py-16 md:py-20'
       }`}
       style={!isPalmDesert ? {
         background: 'linear-gradient(to bottom, #e0f7fa, #b2ebf2)',
@@ -23,7 +23,7 @@ export default function EnhancedHero({ locationName, subtitle, location }) {
             backgroundRepeat: 'repeat-x',
             backgroundPosition: 'top center',
             backgroundSize: '20% auto',
-            top: '0px'
+            top: '-20px'
           }}
         />
       )}
@@ -32,14 +32,14 @@ export default function EnhancedHero({ locationName, subtitle, location }) {
         
         {isPalmDesert ? (
           /* ========== PALM DESERT LAYOUT ========== */
-          <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16 max-w-7xl mx-auto">
             {/* Content */}
             <div className="flex-1 text-center md:text-left order-2 md:order-1">
-              <div className="bg-green-800/10 p-6 md:p-8 rounded-xl backdrop-blur-sm">
-                <h1 className="text-white text-3xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight drop-shadow-lg" style={{ fontFamily: "'Shadows Into Light Two', cursive" }}>
+              <div className="p-8 md:p-10">
+                <h1 className="text-white text-3xl md:text-5xl font-bold mb-6 md:mb-8 leading-tight drop-shadow-lg" style={{ fontFamily: "'Shadows Into Light Two', cursive" }}>
                   Your Perfect Smile Begins Here
                 </h1>
-                <p className="text-white text-lg md:text-2xl leading-relaxed font-medium drop-shadow-md mb-8">
+                <p className="text-white text-lg md:text-2xl leading-relaxed font-medium drop-shadow-md mb-10">
                   State-of-the-art orthodontic care for patients of all ages. We're committed to creating 
                   beautiful, healthy smiles that last a lifetime.
                 </p>
@@ -47,14 +47,14 @@ export default function EnhancedHero({ locationName, subtitle, location }) {
                 {/* CTA Buttons - Palm Desert */}
                 <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                   <button
-                    className="px-6 py-3 bg-white text-green-800 font-bold rounded-lg hover:bg-green-50 transition-all duration-300 hover:scale-105 shadow-lg"
+                    className="px-8 py-4 bg-white text-green-800 font-bold rounded-lg hover:bg-green-50 transition-all duration-300 hover:scale-105 shadow-lg text-center"
                   >
                     Schedule Free Consultation
                   </button>
                   
                   <a
                     href="#insurance"
-                    className="px-6 py-3 bg-transparent text-white font-bold rounded-lg border-2 border-white hover:bg-white/10 transition-all duration-300 hover:scale-105 shadow-lg"
+                    className="px-8 py-4 bg-transparent text-white font-bold rounded-lg border-2 border-white hover:bg-white/10 transition-all duration-300 hover:scale-105 shadow-lg text-center inline-block"
                   >
                     Payment Options
                   </a>
@@ -152,7 +152,7 @@ export default function EnhancedHero({ locationName, subtitle, location }) {
 
       {/* Bottom landscape decoration - Palm Desert only */}
       {isPalmDesert && (
-        <div className="absolute bottom-0 left-0 right-0 z-30 w-full">
+        <div className="absolute bottom-0 left-0 right-0 z-30 w-full pointer-events-none" style={{ marginBottom: '-2px' }}>
           <div 
             className="w-full h-36"
             style={{
