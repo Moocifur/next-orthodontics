@@ -33,18 +33,38 @@ export default function DoctorProfile({ location }) {
     <section 
       className="py-20 relative overflow-hidden"
       style={{
-        backgroundColor: '#f5efe0',
-        backgroundImage: 'linear-gradient(to bottom, #f5efe0, #e9dfc8)'
+        backgroundColor: isPalmDesert ? '#f5efe0' : '#e0f7fa',
+        backgroundImage: isPalmDesert 
+          ? 'linear-gradient(to bottom, #f5efe0, #e9dfc8)'
+          : 'linear-gradient(to bottom, #e0f7fa, #b2ebf2)'
       }}
     >
       {/* Top decorative border */}
       <div 
         className="absolute top-0 left-0 right-0 h-4 opacity-80"
         style={{
-          background: 'linear-gradient(45deg, #e09c54 25%, transparent 25%), linear-gradient(-45deg, #e09c54 25%, transparent 25%)',
+          background: isPalmDesert
+            ? 'linear-gradient(45deg, #e09c54 25%, transparent 25%), linear-gradient(-45deg, #e09c54 25%, transparent 25%)'
+            : 'linear-gradient(45deg, #87CEEB 25%, transparent 25%), linear-gradient(-45deg, #87CEEB 25%, transparent 25%)',
           backgroundSize: '20px 20px'
         }}
       />
+
+      {/* Loma Linda - Scattered Beach Stickers */}
+      {!isPalmDesert && (
+        <>
+          <div className="absolute" style={{ top: '8%', left: '5%', transform: 'rotate(-12deg)', fontSize: '3em', opacity: 0.25, pointerEvents: 'none' }}>🌊</div>
+          <div className="absolute" style={{ top: '15%', right: '8%', transform: 'rotate(25deg)', fontSize: '2.5em', opacity: 0.25, pointerEvents: 'none' }}>☀️</div>
+          <div className="absolute" style={{ top: '45%', left: '3%', transform: 'rotate(-8deg)', fontSize: '3.5em', opacity: 0.25, pointerEvents: 'none' }}>🏖️</div>
+          <div className="absolute" style={{ bottom: '20%', left: '12%', transform: 'rotate(15deg)', fontSize: '3em', opacity: 0.25, pointerEvents: 'none' }}>🌴</div>
+          <div className="absolute" style={{ bottom: '8%', right: '6%', transform: 'rotate(-20deg)', fontSize: '4em', opacity: 0.25, pointerEvents: 'none' }}>⭐</div>
+          <div className="absolute" style={{ top: '60%', right: '15%', transform: 'rotate(30deg)', fontSize: '3em', opacity: 0.25, pointerEvents: 'none' }}>🐚</div>
+          <div className="absolute" style={{ top: '35%', left: '20%', transform: 'rotate(-25deg)', fontSize: '2em', opacity: 0.25, pointerEvents: 'none' }}>🦀</div>
+          <div className="absolute" style={{ bottom: '35%', right: '25%', transform: 'rotate(18deg)', fontSize: '2.8em', opacity: 0.25, pointerEvents: 'none' }}>🐠</div>
+          <div className="absolute" style={{ top: '25%', right: '5%', transform: 'rotate(-15deg)', fontSize: '2.5em', opacity: 0.25, pointerEvents: 'none' }}>🐬</div>
+          <div className="absolute" style={{ bottom: '45%', left: '8%', transform: 'rotate(22deg)', fontSize: '2.2em', opacity: 0.25, pointerEvents: 'none' }}>🌺</div>
+        </>
+      )}
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
@@ -52,8 +72,8 @@ export default function DoctorProfile({ location }) {
           <h2 
             className="text-4xl md:text-5xl font-bold inline-block relative"
             style={{ 
-              fontFamily: "'Shadows Into Light Two', cursive",
-              color: '#4a6023',
+              fontFamily: isPalmDesert ? "'Shadows Into Light Two', cursive" : "'Spicy Rice', cursive",
+              color: isPalmDesert ? '#4a6023' : '#1a56db',
               textShadow: '0 1px 3px rgba(255, 255, 255, 0.8)'
             }}
           >
@@ -61,7 +81,7 @@ export default function DoctorProfile({ location }) {
             <span 
               className="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-0.5 w-16 rounded"
               style={{ 
-                backgroundColor: '#e09c54',
+                backgroundColor: isPalmDesert ? '#e09c54' : '#87CEEB',
                 bottom: '-10px'
               }}
             />
@@ -70,40 +90,44 @@ export default function DoctorProfile({ location }) {
 
         {/* Doctor Content */}
         <div className="flex flex-col md:flex-row justify-between gap-10 md:gap-16 mb-12 relative">
-          {/* Decorative background elements */}
-          <div 
-            className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 opacity-35 pointer-events-none hidden md:block"
-            style={{
-              backgroundImage: 'url(/images/succulent2.png)',
-              backgroundSize: 'contain',
-              backgroundRepeat: 'no-repeat',
-              zIndex: 0
-            }}
-          />
-          <div 
-            className="absolute right-1/5 bottom-1/5 w-32 h-32 opacity-35 pointer-events-none hidden md:block"
-            style={{
-              backgroundImage: 'url(/images/cactus.png)',
-              backgroundSize: 'contain',
-              backgroundRepeat: 'no-repeat',
-              transform: 'rotate(-15deg)',
-              zIndex: 0
-            }}
-          />
+          {/* Palm Desert Decorative background elements */}
+          {isPalmDesert && (
+            <>
+              <div 
+                className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 opacity-35 pointer-events-none hidden md:block"
+                style={{
+                  backgroundImage: 'url(/images/succulent2.png)',
+                  backgroundSize: 'contain',
+                  backgroundRepeat: 'no-repeat',
+                  zIndex: 0
+                }}
+              />
+              <div 
+                className="absolute right-1/5 bottom-1/5 w-32 h-32 opacity-35 pointer-events-none hidden md:block"
+                style={{
+                  backgroundImage: 'url(/images/cactus.png)',
+                  backgroundSize: 'contain',
+                  backgroundRepeat: 'no-repeat',
+                  transform: 'rotate(-15deg)',
+                  zIndex: 0
+                }}
+              />
+            </>
+          )}
 
           {/* Text Content - Order 2 on mobile, 1 on desktop */}
           <div className="flex-1 md:max-w-[60%] relative z-10 order-2 md:order-1">
             <div 
               className="p-6 rounded-lg border text-center md:text-left"
               style={{
-                backgroundColor: 'rgba(245, 239, 224, 0.3)',
-                borderColor: 'rgba(74, 96, 35, 0.2)'
+                backgroundColor: isPalmDesert ? 'rgba(245, 239, 224, 0.3)' : 'rgba(224, 247, 250, 0.3)',
+                borderColor: isPalmDesert ? 'rgba(74, 96, 35, 0.2)' : 'rgba(26, 86, 219, 0.2)'
               }}
             >
               <div 
                 className="text-lg leading-relaxed"
                 style={{
-                  color: '#2c4312',
+                  color: isPalmDesert ? '#2c4312' : '#1e3a8a',
                   textShadow: '0 1px 5px rgba(255, 255, 255, 0.6)'
                 }}
               >
@@ -139,7 +163,7 @@ export default function DoctorProfile({ location }) {
                   left: '20px',
                   right: '-20px',
                   bottom: '-20px',
-                  backgroundColor: '#e09c54',
+                  backgroundColor: isPalmDesert ? '#e09c54' : '#87CEEB',
                   zIndex: 1
                 }}
               />
@@ -185,7 +209,7 @@ export default function DoctorProfile({ location }) {
               onClick={prevSlide}
               className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white bg-opacity-80 rounded-full flex items-center justify-center text-lg transition-all duration-300 hover:bg-opacity-100 hover:scale-110 z-20"
               style={{
-                color: '#4a6023',
+                color: isPalmDesert ? '#4a6023' : '#1a56db',
                 boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)'
               }}
               aria-label="Previous slide"
@@ -198,7 +222,7 @@ export default function DoctorProfile({ location }) {
               onClick={nextSlide}
               className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white bg-opacity-80 rounded-full flex items-center justify-center text-lg transition-all duration-300 hover:bg-opacity-100 hover:scale-110 z-20"
               style={{
-                color: '#4a6023',
+                color: isPalmDesert ? '#4a6023' : '#1a56db',
                 boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)'
               }}
               aria-label="Next slide"
@@ -219,7 +243,7 @@ export default function DoctorProfile({ location }) {
                   }`}
                   style={{
                     backgroundColor: currentSlide === index 
-                      ? '#4a6023' 
+                      ? (isPalmDesert ? '#4a6023' : '#1a56db')
                       : 'rgba(255, 255, 255, 0.6)'
                   }}
                   aria-label={`Go to slide ${index + 1}`}
@@ -230,28 +254,30 @@ export default function DoctorProfile({ location }) {
         </div>
       </div>
 
-      {/* Right decorative element */}
-      <div 
-        className="absolute -right-14 top-12 w-44 h-44 opacity-50 pointer-events-none hidden xl:block"
-        style={{
-          backgroundImage: 'url(/images/succulent2.png)',
-          backgroundSize: 'contain',
-          backgroundRepeat: 'no-repeat',
-          transform: 'rotate(15deg)',
-          zIndex: 1
-        }}
-      />
-
-      {/* Left decorative element */}
-      <div 
-        className="absolute -left-10 bottom-16 w-36 h-36 opacity-50 pointer-events-none hidden xl:block"
-        style={{
-          backgroundImage: 'url(/images/cactus.png)',
-          backgroundSize: 'contain',
-          backgroundRepeat: 'no-repeat',
-          zIndex: 1
-        }}
-      />
+      {/* Palm Desert - Right decorative element */}
+      {isPalmDesert && (
+        <>
+          <div 
+            className="absolute -right-14 top-12 w-44 h-44 opacity-50 pointer-events-none hidden xl:block"
+            style={{
+              backgroundImage: 'url(/images/succulent2.png)',
+              backgroundSize: 'contain',
+              backgroundRepeat: 'no-repeat',
+              transform: 'rotate(15deg)',
+              zIndex: 1
+            }}
+          />
+          <div 
+            className="absolute -left-10 bottom-16 w-36 h-36 opacity-50 pointer-events-none hidden xl:block"
+            style={{
+              backgroundImage: 'url(/images/cactus.png)',
+              backgroundSize: 'contain',
+              backgroundRepeat: 'no-repeat',
+              zIndex: 1
+            }}
+          />
+        </>
+      )}
     </section>
   )
 }

@@ -1,7 +1,9 @@
 import HeaderWithNav from '@/components/HeaderWithNav'
 import Hero from '@/components/Hero'
+import DoctorProfile from '@/components/DoctorProfile'
 import Service from '@/components/Service'
 import Insurance from '@/components/Insurance'
+import Location from '@/components/Location'
 import ContactForm from '@/components/ContactForm'
 import Footer from '@/components/Footer'
 
@@ -62,11 +64,15 @@ export default function LomaLinda() {
         </div>
       </section> */}
 
+      <DoctorProfile location="loma-linda" />
+
       <Service location="loma-linda" />
 
       <Insurance location="loma-linda" />
 
-      <section className="py-16 bg-white">
+      <Location location="loma-linda" />
+
+      {/* <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <h3 className="text-3xl font-bold text-gray-800 mb-8 text-center">
             Find the Wire Wagon
@@ -91,7 +97,7 @@ export default function LomaLinda() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section id="contact" className="py-16 bg-loma-linda-50">
         <div className="max-w-6xl mx-auto px-6">
