@@ -2,221 +2,168 @@ export default function EnhancedHero({ locationName, subtitle, location }) {
   const isPalmDesert = location === 'palm-desert';
   
   return (
-    <>
-      {/* HERO SECTION */}
-      <section 
-        className={`relative overflow-hidden py-16 md:py-20 ${
-          isPalmDesert ? 'bg-gradient-to-r from-green-800 to-green-700' : ''
-        }`}
-        style={!isPalmDesert ? {
-          backgroundImage: 'url("/images/hero-background.png")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        } : {}}
-      >
-        {/* Decorative drape at top - Palm Desert only */}
-        {isPalmDesert && (
-          <div 
-            className="absolute left-0 w-full h-80 pointer-events-none z-10 opacity-90"
-            style={{
-              backgroundImage: 'url("/images/drape.png")',
-              backgroundRepeat: 'repeat-x',
-              backgroundPosition: 'top center',
-              backgroundSize: '20% auto',
-              top: '0px'
-            }}
-          />
-        )}
+    <section 
+      className={`relative overflow-hidden py-16 md:py-20 ${
+        isPalmDesert ? 'bg-gradient-to-r from-green-800 to-green-700' : ''
+      }`}
+      style={!isPalmDesert ? {
+        background: 'linear-gradient(to bottom, #e0f7fa, #b2ebf2)',
+        // backgroundImage: 'url("/images/hero-background.png")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      } : {}}
+    >
+      {/* Decorative drape at top - Palm Desert only */}
+      {isPalmDesert && (
+        <div 
+          className="absolute left-0 w-full h-80 pointer-events-none z-10 opacity-90"
+          style={{
+            backgroundImage: 'url("/images/drape.png")',
+            backgroundRepeat: 'repeat-x',
+            backgroundPosition: 'top center',
+            backgroundSize: '20% auto',
+            top: '0px'
+          }}
+        />
+      )}
+      
+      <div className="container mx-auto px-5 relative z-20 max-w-6xl">
         
-        <div className="container mx-auto px-5 relative z-20 max-w-6xl">
-          
-          {isPalmDesert ? (
-            /* PALM DESERT LAYOUT */
-            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 max-w-7xl mx-auto">
-              {/* Content */}
-              <div className="flex-1 text-center md:text-left order-2 md:order-1">
-                <div className="bg-green-800/10 p-6 md:p-8 rounded-xl backdrop-blur-sm">
-                  <h1 className="text-white text-3xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight drop-shadow-lg" style={{ fontFamily: "'Shadows Into Light Two', cursive" }}>
-                    Your Perfect Smile Begins Here
-                  </h1>
-                  <p className="text-white text-lg md:text-2xl leading-relaxed font-medium drop-shadow-md">
-                    State-of-the-art orthodontic care for patients of all ages. We're committed to creating 
-                    beautiful, healthy smiles that last a lifetime.
+        {isPalmDesert ? (
+          /* ========== PALM DESERT LAYOUT ========== */
+          <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 max-w-7xl mx-auto">
+            {/* Content */}
+            <div className="flex-1 text-center md:text-left order-2 md:order-1">
+              <div className="bg-green-800/10 p-6 md:p-8 rounded-xl backdrop-blur-sm">
+                <h1 className="text-white text-3xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight drop-shadow-lg" style={{ fontFamily: "'Shadows Into Light Two', cursive" }}>
+                  Your Perfect Smile Begins Here
+                </h1>
+                <p className="text-white text-lg md:text-2xl leading-relaxed font-medium drop-shadow-md mb-8">
+                  State-of-the-art orthodontic care for patients of all ages. We're committed to creating 
+                  beautiful, healthy smiles that last a lifetime.
+                </p>
+                
+                {/* CTA Buttons - Palm Desert */}
+                <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                  <button
+                    className="px-6 py-3 bg-white text-green-800 font-bold rounded-lg hover:bg-green-50 transition-all duration-300 hover:scale-105 shadow-lg"
+                  >
+                    Schedule Free Consultation
+                  </button>
+                  
+                  <a
+                    href="#insurance"
+                    className="px-6 py-3 bg-transparent text-white font-bold rounded-lg border-2 border-white hover:bg-white/10 transition-all duration-300 hover:scale-105 shadow-lg"
+                  >
+                    Payment Options
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Hero Image/Video placeholder */}
+            <div className="flex-1 order-1 md:order-2 flex justify-center w-full">
+              <div className="w-full max-w-lg">
+                <div className="bg-green-900/20 rounded-xl shadow-2xl aspect-video flex items-center justify-center backdrop-blur-sm border-4 border-white">
+                  <p className="text-white/60 text-lg">Hero Video/Image</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          /* ========== LOMA LINDA LAYOUT - Wire Wagon ========== */
+          <>
+            {/* Header section */}
+            <div className="text-center mb-8">
+              <h1 className="text-blue-900 text-2xl md:text-3xl font-bold uppercase tracking-wide mb-2">
+                WELCOME TO THE
+              </h1>
+              <h2 
+                className="text-blue-800 text-5xl md:text-7xl lg:text-8xl font-bold mb-2" 
+                style={{ fontFamily: "'Spicy Rice', cursive" }}
+              >
+                Wire Wagon
+              </h2>
+              <p className="text-blue-900 text-lg md:text-xl font-bold uppercase tracking-wide">
+                A MOBILE ORTHODONTIC PRACTICE
+              </p>
+            </div>
+            
+            {/* Main content - Two columns */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start mt-12">
+              
+              {/* Left Column - Text content */}
+              <div className="space-y-6 text-center lg:text-left">
+                <h3 
+                  className="text-blue-900 text-3xl md:text-4xl lg:text-5xl font-bold italic leading-tight"
+                  style={{ fontFamily: "'Spicy Rice', cursive" }}
+                >
+                  Straight Smiles - no waiting rooms!
+                </h3>
+                
+                <div className="space-y-4 text-blue-900 text-base md:text-lg leading-relaxed mb-6">
+                  <p>
+                    The Wire Wagon is Loma Linda's fully licensed, fully mobile orthodontic practice—bringing 
+                    professional orthodontic care right to your neighborhood! We park at convenient locations 
+                    throughout the community, making it easier than ever to get the smile you've always wanted.
+                  </p>
+                  
+                  <p>
+                    Licensed by the California Dental Board, we provide high-quality orthodontic services in a 
+                    unique outdoor setting. No waiting rooms, no traditional office stress—just straightforward 
+                    care in a relaxed, open-air environment.
                   </p>
                 </div>
-              </div>
-
-              {/* Hero Image/Video placeholder */}
-              <div className="flex-1 order-1 md:order-2 flex justify-center w-full">
-                <div className="w-full max-w-lg">
-                  <div className="bg-green-900/20 rounded-xl shadow-2xl aspect-video flex items-center justify-center backdrop-blur-sm border-4 border-white">
-                    <p className="text-white/60 text-lg">Hero Video/Image</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ) : (
-            /* LOMA LINDA LAYOUT - Wire Wagon */
-            <>
-              {/* Header section */}
-              <div className="text-center mb-8">
-                <h1 className="text-blue-900 text-2xl md:text-4xl font-bold uppercase tracking-wide mb-2 drop-shadow-sm">
-                  WELCOME TO THE
-                </h1>
-                <h2 className="text-blue-800 text-5xl md:text-8xl font-bold mb-2 drop-shadow-md" 
-                    style={{ fontFamily: "'Spicy Rice', cursive" }}>
-                  Wire Wagon
-                </h2>
-                <p className="text-blue-900 text-lg md:text-2xl font-bold uppercase tracking-wide">
-                  A MOBILE ORTHODONTIC PRACTICE
-                </p>
-              </div>
-              
-              <div className="flex flex-col lg:flex-row items-start gap-8">
-                {/* Left side - Text content */}
-                <div className="flex-1 lg:pr-8 text-center lg:text-left">
-                  <h3 className="text-blue-900 text-3xl md:text-5xl font-bold italic mb-6 leading-tight drop-shadow-sm"
-                      style={{ fontFamily: "'Spicy Rice', cursive" }}>
-                    Straight Smiles - no waiting rooms!
-                  </h3>
-                  
-                  <div className="space-y-4 md:space-y-5 text-blue-900 text-base md:text-xl font-medium leading-relaxed">
-                    <p className="drop-shadow-sm">
-                      The Wire Wagon is Loma Linda's fully licensed, fully mobile orthodontic practice—bringing 
-                      straight teeth and good vibes straight to you! Whether we're parked under the shade of a 
-                      tree at your local park or pulling up curbside to your home, our mission is to make 
-                      orthodontic care as easy and enjoyable as possible.
-                    </p>
-                    
-                    <p className="drop-shadow-sm">
-                      Licensed by the California Dental Board, we provide professional, high-quality orthodontic 
-                      services in a relaxed, outdoor setting that skips the stress of traditional office visits.
-                    </p>
-                    
-                    <p className="drop-shadow-sm">
-                      Think of us as your neighborhood smile-mobile—making orthodontics convenient, comfortable, 
-                      and just a little more fun.
-                    </p>
-                  </div>
-                </div>
                 
-                {/* Right side - RV and contact info */}
-                <div className="flex-1 flex flex-col items-center lg:items-end w-full">
-                  <div className="relative w-full max-w-lg">
-                    {/* RV Image placeholder */}
-                    <div className="text-center mb-8 lg:-mt-16">
-                      <div className="w-full h-48 md:h-64 bg-blue-200/30 rounded-lg shadow-lg flex items-center justify-center backdrop-blur-sm">
-                        <p className="text-blue-900/60 text-lg">RV Image Here</p>
-                      </div>
-                    </div>
-                    
-                    {/* Contact Info */}
-                    <div className="text-center lg:pr-8 -mt-10 relative z-30">
-                      <h3 className="text-blue-900 text-2xl md:text-4xl font-bold italic mb-2"
-                          style={{ fontFamily: "'Spicy Rice', cursive" }}>
-                        Want more info?
-                      </h3>
-                      <h4 className="text-blue-900 text-xl md:text-3xl font-bold italic mb-2"
-                          style={{ fontFamily: "'Spicy Rice', cursive" }}>
-                        Text us!
-                      </h4>
-                      <a 
-                        href="tel:9097991825" 
-                        className="text-blue-900 text-2xl md:text-4xl font-bold italic hover:scale-105 transition-transform duration-300 inline-block"
-                        style={{ fontFamily: "'Spicy Rice', cursive" }}
-                      >
-                        (909) 799-1825
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Bottom section - Book appointment */}
-              <div className="mt-12 md:mt-16 flex flex-col lg:flex-row items-center justify-between gap-8">
-                <div className="text-center lg:text-left">
-                  <h3 className="text-blue-900 text-xl md:text-3xl font-bold italic"
-                      style={{ fontFamily: "'Spicy Rice', cursive" }}>
-                    Already been aboard the Wire Wagon?
-                  </h3>
-                </div>
-                
-                <div className="flex justify-center">
+                {/* CTA Buttons - Loma Linda */}
+                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <button
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-6 md:px-8 py-3 md:py-4 rounded-lg text-lg md:text-xl font-bold transform hover:-translate-y-2 transition-all duration-300 shadow-lg -rotate-6 hover:-rotate-3"
+                    className="px-6 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-all duration-300 hover:scale-105 shadow-lg"
                   >
-                    Book an Appointment
+                    Schedule Free Consultation
                   </button>
+                  
+                  <a
+                    href="#insurance"
+                    className="px-6 py-3 bg-transparent text-blue-900 font-bold rounded-lg border-2 border-blue-900 hover:bg-blue-900/10 transition-all duration-300 hover:scale-105 shadow-lg"
+                  >
+                    Payment Options
+                  </a>
                 </div>
               </div>
-            </>
-          )}
-        </div>
-
-        {/* Bottom landscape decoration - Palm Desert only */}
-        {isPalmDesert && (
-          <div className="absolute bottom-0 left-0 right-0 z-30 w-full">
-            <div 
-              className="w-full h-36"
-              style={{
-                backgroundImage: 'url("/images/top-desert.png")',
-                backgroundSize: 'auto 150px',
-                backgroundPosition: 'bottom center',
-                backgroundRepeat: 'repeat-x'
-              }}
-            />
-          </div>
+              
+              {/* Right Column - RV Graphic */}
+              <div className="flex flex-col items-center">
+                {/* RV Image */}
+                <div className="relative w-full max-w-md">
+                  <img 
+                    src="/images/rv3.png"
+                    alt="Wire Wagon Mobile Orthodontic RV"
+                    className="w-full h-auto drop-shadow-2xl"
+                  />
+                </div>
+              </div>
+              
+            </div>
+          </>
         )}
-      </section>
+      </div>
 
-      {/* SANDY ACTIONS SECTION */}
-      <section className={`${isPalmDesert ? 'bg-orange-200' : 'bg-orange-200'} py-12 md:py-20 relative overflow-visible`}>
-        <div className="container mx-auto px-5">
-          <div className="flex flex-wrap justify-center gap-5 md:gap-8 relative z-10">
-            
-            {/* Request Appointment Card - Using custom image */}
-            <div className="relative">
-              <button
-                className="transition-all duration-300 hover:-translate-y-2 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-yellow-300"
-              >
-                <img 
-                  src="/images/2.png" 
-                  alt="Request an Appointment"
-                  className="w-48 h-48 md:w-64 md:h-64 filter drop-shadow-2xl"
-                />
-              </button>
-            </div>
-
-            {/* Make Payment Card - Using custom image */}
-            <div className="relative">
-              <button
-                className="transition-all duration-300 hover:-translate-y-2 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-yellow-300"
-              >
-                <img 
-                  src="/images/1.png" 
-                  alt="Make a Payment"
-                  className="w-48 h-48 md:w-64 md:h-64 filter drop-shadow-2xl"
-                />
-              </button>
-            </div>
-
-            {/* New Patient Card - Using custom image */}
-            <div className="relative">
-              <button
-                className="transition-all duration-300 hover:-translate-y-2 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-yellow-300"
-              >
-                <img 
-                  src="/images/3.png" 
-                  alt="New Patient Paperwork"
-                  className="w-48 h-48 md:w-64 md:h-64 filter drop-shadow-2xl"
-                />
-              </button>
-            </div>
-
-          </div>
+      {/* Bottom landscape decoration - Palm Desert only */}
+      {isPalmDesert && (
+        <div className="absolute bottom-0 left-0 right-0 z-30 w-full">
+          <div 
+            className="w-full h-36"
+            style={{
+              backgroundImage: 'url("/images/top-desert.png")',
+              backgroundSize: 'auto 150px',
+              backgroundPosition: 'bottom center',
+              backgroundRepeat: 'repeat-x'
+            }}
+          />
         </div>
-      </section>
-    </>
+      )}
+    </section>
   );
 }
