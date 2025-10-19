@@ -5,132 +5,114 @@ import Script from 'next/script'
 
 export default function ClientScripts() {
   useEffect(() => {
-    // Initialize JotForm instances after scripts load
-    const initializeJotForms = () => {
-      console.log('Attempting to initialize JotForms...')
-      console.log('JotformFeedback available?', typeof window.JotformFeedback !== 'undefined')
+    // Wait for JotForm to be available and initialize
+    const checkAndInitialize = () => {
+      console.log('Checking for JotformFeedback...', typeof window.JotformFeedback)
       
-      if (typeof window !== 'undefined' && window.JotformFeedback) {
-        console.log('JotformFeedback is available, creating instances...')
+      if (typeof window !== 'undefined' && typeof window.JotformFeedback !== 'undefined') {
+        console.log('JotformFeedback found! Initializing forms...')
         
-        // Appointment Form
-        if (!window.JFL_201747138890158) {
-          try {
-            window.JFL_201747138890158 = new window.JotformFeedback({
-              formId: '201747138890158',
-              base: 'https://form.jotform.com/',
-              windowTitle: 'Appointment Request Form',
-              backgroundColor: '#50e3c2',
-              fontColor: '#FFFFFF',
-              type: '1',
-              height: 500,
-              width: 700,
-              openOnLoad: false
-            })
-            console.log('Appointment form initialized')
-          } catch (e) {
-            console.error('Error initializing appointment form:', e)
-          }
-        }
+        try {
+          // Create the form instances
+          window.JFL_201747138890158 = new window.JotformFeedback({
+            formId: '201747138890158',
+            base: 'https://form.jotform.com/',
+            windowTitle: 'Appointment Request Form',
+            backgroundColor: '#50e3c2',
+            fontColor: '#FFFFFF',
+            type: '1',
+            height: 500,
+            width: 700,
+            openOnLoad: false
+          })
+          console.log('Appointment form created:', window.JFL_201747138890158)
 
-        // Payment Form
-        if (!window.JFL_202316251833144) {
-          try {
-            window.JFL_202316251833144 = new window.JotformFeedback({
-              formId: '202316251833144',
-              base: 'https://form.jotform.com/',
-              windowTitle: 'Lane Orthodontics Payment Form',
-              backgroundColor: '#4a90e2',
-              fontColor: '#FFFFFF',
-              type: '1',
-              height: 500,
-              width: 700,
-              openOnLoad: false
-            })
-            console.log('Payment form initialized')
-          } catch (e) {
-            console.error('Error initializing payment form:', e)
-          }
-        }
+          window.JFL_202316251833144 = new window.JotformFeedback({
+            formId: '202316251833144',
+            base: 'https://form.jotform.com/',
+            windowTitle: 'Lane Orthodontics Payment Form',
+            backgroundColor: '#4a90e2',
+            fontColor: '#FFFFFF',
+            type: '1',
+            height: 500,
+            width: 700,
+            openOnLoad: false
+          })
+          console.log('Payment form created:', window.JFL_202316251833144)
 
-        // New Patient Paperwork
-        if (!window.JFL_201746998764070) {
-          try {
-            window.JFL_201746998764070 = new window.JotformFeedback({
-              formId: '201746998764070',
-              base: 'https://form.jotform.com/',
-              windowTitle: 'New Patient Paperwork',
-              backgroundColor: '#4a90e2',
-              fontColor: '#FFFFFF',
-              type: '2',
-              height: 500,
-              width: 700,
-              openOnLoad: false
-            })
-            console.log('Paperwork form initialized')
-          } catch (e) {
-            console.error('Error initializing paperwork form:', e)
-          }
+          window.JFL_201746998764070 = new window.JotformFeedback({
+            formId: '201746998764070',
+            base: 'https://form.jotform.com/',
+            windowTitle: 'New Patient Paperwork',
+            backgroundColor: '#4a90e2',
+            fontColor: '#FFFFFF',
+            type: '2',
+            height: 500,
+            width: 700,
+            openOnLoad: false
+          })
+          console.log('Paperwork form created:', window.JFL_201746998764070)
+          
+        } catch (error) {
+          console.error('Error creating JotForm instances:', error)
         }
+      } else {
+        console.log('JotformFeedback not ready yet, will retry...')
       }
     }
 
-    // Add global functions to open forms with better error handling
+    // Global functions to open forms
     window.openAppointmentForm = () => {
       console.log('openAppointmentForm called')
-      if (window.JFL_201747138890158) {
+      console.log('Form object:', window.JFL_201747138890158)
+      
+      if (window.JFL_201747138890158 && typeof window.JFL_201747138890158.open === 'function') {
         console.log('Opening appointment form...')
         window.JFL_201747138890158.open()
       } else {
-        console.error('Appointment form not initialized yet. Trying to initialize now...')
-        initializeJotForms()
+        console.error('Appointment form not ready. Reinitializing...')
+        checkAndInitialize()
         setTimeout(() => {
-          if (window.JFL_201747138890158) {
+          if (window.JFL_201747138890158 && typeof window.JFL_201747138890158.open === 'function') {
             window.JFL_201747138890158.open()
+          } else {
+            console.error('Still cannot open form. Object:', window.JFL_201747138890158)
           }
-        }, 500)
+        }, 1000)
       }
     }
 
     window.openPaymentForm = () => {
       console.log('openPaymentForm called')
-      if (window.JFL_202316251833144) {
-        console.log('Opening payment form...')
+      if (window.JFL_202316251833144 && typeof window.JFL_202316251833144.open === 'function') {
         window.JFL_202316251833144.open()
       } else {
-        console.error('Payment form not initialized yet. Trying to initialize now...')
-        initializeJotForms()
+        console.error('Payment form not ready')
+        checkAndInitialize()
         setTimeout(() => {
-          if (window.JFL_202316251833144) {
-            window.JFL_202316251833144.open()
-          }
-        }, 500)
+          if (window.JFL_202316251833144) window.JFL_202316251833144.open()
+        }, 1000)
       }
     }
 
     window.openPaperworkForm = () => {
       console.log('openPaperworkForm called')
-      if (window.JFL_201746998764070) {
-        console.log('Opening paperwork form...')
+      if (window.JFL_201746998764070 && typeof window.JFL_201746998764070.open === 'function') {
         window.JFL_201746998764070.open()
       } else {
-        console.error('Paperwork form not initialized yet. Trying to initialize now...')
-        initializeJotForms()
+        console.error('Paperwork form not ready')
+        checkAndInitialize()
         setTimeout(() => {
-          if (window.JFL_201746998764070) {
-            window.JFL_201746998764070.open()
-          }
-        }, 500)
+          if (window.JFL_201746998764070) window.JFL_201746998764070.open()
+        }, 1000)
       }
     }
 
-    // Try to initialize immediately if scripts already loaded
-    initializeJotForms()
-
-    // Also set up multiple retry timers
-    const timer1 = setTimeout(initializeJotForms, 1000)
-    const timer2 = setTimeout(initializeJotForms, 2000)
-    const timer3 = setTimeout(initializeJotForms, 3000)
+    // Try multiple times to initialize
+    checkAndInitialize()
+    const timer1 = setTimeout(checkAndInitialize, 500)
+    const timer2 = setTimeout(checkAndInitialize, 1500)
+    const timer3 = setTimeout(checkAndInitialize, 3000)
 
     return () => {
       clearTimeout(timer1)
@@ -139,27 +121,30 @@ export default function ClientScripts() {
     }
   }, [])
 
+  const handleScriptLoad = () => {
+    console.log('JotForm script loaded!')
+    // Wait a bit for the script to fully initialize
+    setTimeout(() => {
+      const event = new Event('jotformLoaded')
+      window.dispatchEvent(event)
+    }, 500)
+  }
+
   return (
     <>
       {/* JotForm Feedback Script */}
       <Script 
         src="https://form.jotform.com/static/feedback2.js" 
-        strategy="lazyOnload"
-        onLoad={() => {
-          // Initialize forms when script loads
-          if (window.JotformFeedback) {
-            setTimeout(() => {
-              const event = new Event('jotformLoaded')
-              window.dispatchEvent(event)
-            }, 100)
-          }
-        }}
+        strategy="afterInteractive"
+        onLoad={handleScriptLoad}
+        onError={(e) => console.error('Error loading JotForm script:', e)}
       />
       
       {/* JotForm Embed Handler */}
       <Script 
         src="https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js"
-        strategy="lazyOnload"
+        strategy="afterInteractive"
+        onLoad={() => console.log('JotForm embed handler loaded')}
       />
       
       {/* Rhinogram Widget */}
@@ -168,6 +153,7 @@ export default function ClientScripts() {
         id="rhinogram-embed" 
         src="https://app.rhinogram.com/widget/embed.js?id=10ef415e-070c-4710-b08a-e0e26ab542e3"
         strategy="lazyOnload"
+        onLoad={() => console.log('Rhinogram widget loaded')}
       />
     </>
   )
