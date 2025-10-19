@@ -7,6 +7,18 @@ import { Phone, Mail, Clock, MapPin, Menu, X, MapPinned } from 'lucide-react'
 export default function HeaderWithNav({ locationName, location }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
+  const handleAppointmentClick = () => {
+    if (typeof window !== 'undefined' && window.openAppointmentForm) {
+      window.openAppointmentForm()
+    }
+  }
+
+  const handlePaymentClick = () => {
+    if (typeof window !== 'undefined' && window.openPaymentForm) {
+      window.openPaymentForm()
+    }
+  }
+
   // Determine colors based on location
   const isPalmDesert = location === 'palm-desert'
   const headerBg = isPalmDesert ? 'bg-palm-desert-600' : 'bg-loma-linda-600'
@@ -21,9 +33,6 @@ export default function HeaderWithNav({ locationName, location }) {
   const paymentBtnStyle = {
     backgroundColor: '#d4a574',
     color: 'white'
-  }
-  const paymentBtnHoverStyle = {
-    backgroundColor: '#bf9660'
   }
 
   return (
@@ -56,15 +65,13 @@ export default function HeaderWithNav({ locationName, location }) {
                 <Clock className="w-4 h-4 text-white/90" />
                 <span>Mon-Fri 9AM-5PM</span>
               </div>
-              <a 
-                href="#payment" 
-                className="px-3 py-1 rounded transition-colors font-medium"
+              <button 
+                onClick={handlePaymentClick}
+                className="px-3 py-1 rounded transition-colors font-medium hover:opacity-90"
                 style={paymentBtnStyle}
-                onMouseEnter={(e) => e.target.style.backgroundColor = '#bf9660'}
-                onMouseLeave={(e) => e.target.style.backgroundColor = '#d4a574'}
               >
                 Make Payment
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -104,12 +111,12 @@ export default function HeaderWithNav({ locationName, location }) {
               <div className="h-6 w-px bg-white/50"></div>
               
               {/* Action Buttons */}
-              <a 
-                href="#appointment"
+              <button
+                onClick={handleAppointmentClick}
                 className={`${primaryBtnBg} ${primaryBtnHover} px-4 py-2 rounded-lg transition-colors font-medium`}
               >
                 Book Appointment
-              </a>
+              </button>
               
               <Link 
                 href={isPalmDesert ? '/loma-linda' : '/palm-desert'}
@@ -185,23 +192,25 @@ export default function HeaderWithNav({ locationName, location }) {
               
               {/* Mobile Action Buttons */}
               <div className="pt-4 space-y-2 border-t border-white/20">
-                <a 
-                  href="#appointment"
-                  className={`block text-center ${primaryBtnBg} ${primaryBtnHover} px-4 py-3 rounded-lg transition-colors font-medium`}
-                  onClick={() => setIsMenuOpen(false)}
+                <button
+                  onClick={() => {
+                    handleAppointmentClick()
+                    setIsMenuOpen(false)
+                  }}
+                  className={`block w-full text-center ${primaryBtnBg} ${primaryBtnHover} px-4 py-3 rounded-lg transition-colors font-medium`}
                 >
                   Book Appointment
-                </a>
-                <a 
-                  href="#payment"
-                  className="block text-center px-4 py-3 rounded-lg transition-colors font-medium"
+                </button>
+                <button
+                  onClick={() => {
+                    handlePaymentClick()
+                    setIsMenuOpen(false)
+                  }}
+                  className="block w-full text-center px-4 py-3 rounded-lg transition-colors font-medium hover:opacity-90"
                   style={paymentBtnStyle}
-                  onMouseEnter={(e) => e.target.style.backgroundColor = '#bf9660'}
-                  onMouseLeave={(e) => e.target.style.backgroundColor = '#d4a574'}
-                  onClick={() => setIsMenuOpen(false)}
                 >
                   Make Payment
-                </a>
+                </button>
                 <Link 
                   href={isPalmDesert ? '/loma-linda' : '/palm-desert'}
                   className={`flex items-center justify-center gap-2 bg-white ${buttonText} px-4 py-3 rounded-lg ${buttonHover} transition-colors font-medium`}

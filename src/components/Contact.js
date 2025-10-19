@@ -1,5 +1,13 @@
+'use client'
+
 export default function Contact({ location }) {
   const isPalmDesert = location === 'palm-desert'
+
+  const handleAppointmentClick = () => {
+    if (typeof window !== 'undefined' && window.openAppointmentForm) {
+      window.openAppointmentForm()
+    }
+  }
 
   const colors = isPalmDesert ? {
     primary: '#4a6023',
@@ -123,6 +131,7 @@ export default function Contact({ location }) {
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row justify-center gap-5 mt-8">
           <button
+            onClick={handleAppointmentClick}
             className="px-8 py-4 rounded-lg font-semibold text-white transition-all duration-300 hover:-translate-y-1 flex items-center justify-center gap-2"
             style={{
               backgroundColor: colors.primary,
