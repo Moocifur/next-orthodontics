@@ -8,10 +8,14 @@ export default function EnhancedHero({ locationName, subtitle, location }) {
       }`}
       style={!isPalmDesert ? {
         background: 'linear-gradient(to bottom, #e0f7fa, #b2ebf2)',
-        // backgroundImage: 'url("/images/hero-background.png")',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
+        backgroundImage: 'url("/images/curtain.png")',
+        // backgroundSize: 'cover',
+        // backgroundPosition: 'center',
+        // backgroundRepeat: 'no-repeat'
+        backgroundRepeat: 'repeat-x',
+            backgroundPosition: 'top center',
+            backgroundSize: '20% auto',
+            top: '-20px'
       } : {}}
     >
       {/* Decorative drape at top - Palm Desert only */}
@@ -63,11 +67,21 @@ export default function EnhancedHero({ locationName, subtitle, location }) {
             </div>
 
             {/* Hero Image/Video placeholder */}
+            {/* Hero Video */}
             <div className="flex-1 order-1 md:order-2 flex justify-center w-full">
               <div className="w-full max-w-lg">
-                <div className="bg-green-900/20 rounded-xl shadow-2xl aspect-video flex items-center justify-center backdrop-blur-sm border-4 border-white">
-                  <p className="text-white/60 text-lg">Hero Video/Image</p>
-                </div>
+                <video 
+                  autoPlay 
+                  muted 
+                  loop 
+                  playsInline 
+                  poster="/images/hero-fallback.jpg" 
+                  className="w-full h-auto rounded-xl shadow-2xl border-4 border-white"
+                  style={{ boxShadow: '0 10px 25px rgba(0, 0, 0, 0.2)' }}
+                >
+                  <source src="/images/hero-vid.mp4" type="video/mp4" />
+                  <img src="/images/hero-fallback.jpg" alt="Happy patient with braces" className="w-full h-auto rounded-xl" />
+                </video>
               </div>
             </div>
           </div>

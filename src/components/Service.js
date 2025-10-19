@@ -1,11 +1,6 @@
 'use client'
 
-import { useState } from 'react'
-
 export default function Services({ location }) {
-  const [activeTab, setActiveTab] = useState('orthodontics')
-  const [hoveredCard, setHoveredCard] = useState(null)
-
   const isPalmDesert = location === 'palm-desert'
 
   // Color variables based on location
@@ -25,69 +20,63 @@ export default function Services({ location }) {
     bgGradient: 'linear-gradient(to bottom, #eff6ff, #dbeafe)'
   }
 
-  // Palm Desert Services (with tabs)
-  const palmDesertServices = {
-    orthodontics: [
-      {
-        id: 'comprehensive',
-        title: 'Comprehensive Orthodontics',
-        description: 'Comprehensive orthodontic treatment for adults and children',
-        icon: 'fa-teeth'
-      },
-      {
-        id: 'aesthetic',
-        title: 'Aesthetic Options',
-        description: 'Clear brackets and Aligners',
-        icon: 'fa-eye'
-      },
-      {
-        id: 'airway',
-        title: 'Airway Orthodontics',
-        description: 'Specialized treatment focusing on proper airway development and breathing patterns for overall health',
-        icon: 'fa-lungs'
-      }
-    ],
-    diagnostics: [
-      {
-        id: 'imaging',
-        title: 'Diagnostic Imaging',
-        description: 'In house Panoramic and Cephalometric X-Rays',
-        icon: 'fa-x-ray'
-      },
-      {
-        id: 'consultations',
-        title: 'Free Consultations',
-        description: 'Complimentary Consultations',
-        icon: 'fa-stethoscope'
-      }
-    ],
-    supplementary: [
-      {
-        id: 'guards',
-        title: 'Custom Guards',
-        description: 'Custom fit Sports guards and Night guards',
-        icon: 'fa-shield-halved'
-      },
-      {
-        id: 'tmj',
-        title: 'TMJ Treatment',
-        description: 'TMJ treatment',
-        icon: 'fa-head-side-mask'
-      },
-      {
-        id: 'whitening',
-        title: 'Teeth Whitening',
-        description: 'At home teeth whitening kits',
-        icon: 'fa-tooth'
-      },
-      {
-        id: 'retainers',
-        title: 'Retainers',
-        description: 'Hawley and Lower Fixed retainers',
-        icon: 'fa-teeth-open'
-      }
-    ]
-  }
+  // Palm Desert Services (all in one)
+  const palmDesertServices = [
+    {
+      id: 'comprehensive',
+      title: 'Comprehensive Orthodontics',
+      description: 'Comprehensive orthodontic treatment for adults and children',
+      icon: 'fa-teeth'
+    },
+    {
+      id: 'aesthetic',
+      title: 'Aesthetic Options',
+      description: 'Clear brackets and Aligners',
+      icon: 'fa-eye'
+    },
+    {
+      id: 'airway',
+      title: 'Airway Orthodontics',
+      description: 'Specialized treatment focusing on proper airway development and breathing patterns for overall health',
+      icon: 'fa-lungs'
+    },
+    {
+      id: 'imaging',
+      title: 'Diagnostic Imaging',
+      description: 'In house Panoramic and Cephalometric X-Rays',
+      icon: 'fa-x-ray'
+    },
+    {
+      id: 'consultations',
+      title: 'Free Consultations',
+      description: 'Complimentary Consultations',
+      icon: 'fa-stethoscope'
+    },
+    {
+      id: 'guards',
+      title: 'Custom Guards',
+      description: 'Custom fit Sports guards and Night guards',
+      icon: 'fa-shield-halved'
+    },
+    {
+      id: 'tmj',
+      title: 'TMJ Treatment',
+      description: 'TMJ treatment',
+      icon: 'fa-head-side-mask'
+    },
+    {
+      id: 'whitening',
+      title: 'Teeth Whitening',
+      description: 'At home teeth whitening kits',
+      icon: 'fa-tooth'
+    },
+    {
+      id: 'retainers',
+      title: 'Retainers',
+      description: 'Hawley and Lower Fixed retainers',
+      icon: 'fa-teeth-open'
+    }
+  ]
 
   // Loma Linda Services (simpler, no tabs)
   const lomaLindaServices = [
@@ -169,91 +158,139 @@ export default function Services({ location }) {
           )}
         </div>
 
-        {/* Tabs (Palm Desert only) */}
-        {isPalmDesert && (
-          <div className="flex justify-center mb-12 gap-4 flex-wrap">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
-                  activeTab === tab.id 
-                    ? 'transform -translate-y-0.5' 
-                    : ''
-                }`}
-                style={{
-                  backgroundColor: activeTab === tab.id ? colors.primary : 'white',
-                  color: activeTab === tab.id ? 'white' : colors.primary,
-                  border: `2px solid ${colors.primary}`,
-                  boxShadow: activeTab === tab.id 
-                    ? '0 5px 12px rgba(0, 0, 0, 0.1)' 
-                    : '0 3px 6px rgba(0, 0, 0, 0.05)'
-                }}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-        )}
+        {/* Services Container - Responsive Grid */}
+        <div className="services-responsive-container">
+          <style jsx>{`
+            .services-responsive-container {
+              max-width: 900px;
+              margin: 0 auto;
+            }
 
-        {/* Services Flow Container */}
-        <div className="flex flex-col gap-6 max-w-5xl mx-auto">
-          {getCurrentServices().map((service, index) => {
-            const isEven = index % 2 === 1
-            const isHovered = hoveredCard === index
+            .service-item {
+              background: white;
+              border-radius: 12px;
+              margin-bottom: 15px;
+              overflow: hidden;
+              box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+              transition: all 0.3s ease;
+            }
 
-            return (
-              <article
-                key={service.id}
-                className={`flex items-center gap-8 p-6 bg-white rounded-3xl transition-all duration-300 relative overflow-hidden ${
-                  isEven ? 'flex-row-reverse' : ''
-                } ${isHovered ? 'transform -translate-y-1' : ''}`}
-                style={{
-                  boxShadow: isHovered 
-                    ? `0 15px 40px ${isPalmDesert ? 'rgba(74, 96, 35, 0.2)' : 'rgba(26, 86, 219, 0.2)'}` 
-                    : `0 10px 30px ${isPalmDesert ? 'rgba(74, 96, 35, 0.1)' : 'rgba(26, 86, 219, 0.1)'}`,
-                  background: isEven 
-                    ? `linear-gradient(135deg, ${isPalmDesert ? '#f0f8f0' : '#f0f9ff'}, ${isPalmDesert ? '#e6f4e6' : '#e0f2fe'})` 
-                    : 'white'
-                }}
-                onMouseEnter={() => setHoveredCard(index)}
-                onMouseLeave={() => setHoveredCard(null)}
-              >
-                {/* Shimmer effect */}
-                <div 
-                  className="absolute top-0 h-full w-full transition-all duration-500 pointer-events-none"
-                  style={{
-                    left: isHovered ? '100%' : '-100%',
-                    background: `linear-gradient(90deg, transparent, ${isPalmDesert ? 'rgba(74, 96, 35, 0.1)' : 'rgba(26, 86, 219, 0.1)'}, transparent)`
-                  }}
-                />
+            .service-header {
+              padding: 20px 25px;
+              display: flex;
+              align-items: center;
+              gap: 15px;
+              background: linear-gradient(to right, ${isPalmDesert ? 'rgba(74, 96, 35, 0.05)' : 'rgba(26, 86, 219, 0.05)'}, transparent);
+              transition: all 0.3s ease;
+              height: 100%;
+            }
 
-                {/* Icon */}
-                <div 
-                  className="w-20 h-20 rounded-full flex items-center justify-center flex-shrink-0 relative z-10"
-                  style={{
-                    background: colors.gradient,
-                    boxShadow: `0 8px 20px ${isPalmDesert ? 'rgba(74, 96, 35, 0.3)' : 'rgba(26, 86, 219, 0.3)'}`
-                  }}
-                >
-                  <i className={`fas ${service.icon} text-3xl text-white`}></i>
+            .service-item:hover .service-header {
+              background: linear-gradient(to right, ${isPalmDesert ? 'rgba(74, 96, 35, 0.1)' : 'rgba(26, 86, 219, 0.1)'}, transparent);
+            }
+
+            .service-icon {
+              width: 50px;
+              height: 50px;
+              background: ${colors.gradient};
+              border-radius: 10px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: white;
+              font-size: 1.3em;
+              flex-shrink: 0;
+            }
+
+            .service-title {
+              flex: 1;
+            }
+
+            .service-title h4 {
+              color: ${colors.primary};
+              font-size: 1.1em;
+              margin-bottom: 3px;
+              font-weight: 600;
+            }
+
+            .service-title p {
+              color: #666;
+              font-size: 0.9em;
+              line-height: 1.5;
+            }
+
+            /* Desktop: Transform to grid */
+            @media (min-width: 768px) {
+              .services-responsive-container {
+                max-width: 1200px;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+              }
+
+              .service-item {
+                margin-bottom: 0;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+              }
+
+              .service-header {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 30px 30px;
+                flex: 1;
+              }
+
+              .service-icon {
+                width: 80px;
+                height: 80px;
+                border-radius: 16px;
+                font-size: 2em;
+                margin-bottom: 20px;
+                box-shadow: 0 8px 20px ${isPalmDesert ? 'rgba(74, 96, 35, 0.3)' : 'rgba(26, 86, 219, 0.3)'};
+              }
+
+              .service-title h4 {
+                font-size: 1.4em;
+                margin-bottom: 10px;
+              }
+
+              .service-title p {
+                font-size: 1em;
+                line-height: 1.6;
+              }
+
+              .service-item:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 12px 30px ${isPalmDesert ? 'rgba(74, 96, 35, 0.12)' : 'rgba(26, 86, 219, 0.12)'};
+              }
+            }
+
+            /* Large Desktop: 3 columns */
+            @media (min-width: 1200px) {
+              .services-responsive-container {
+                grid-template-columns: repeat(3, 1fr);
+              }
+            }
+          `}</style>
+
+          {(isPalmDesert ? palmDesertServices : lomaLindaServices).map((service) => (
+            <div 
+              key={service.id}
+              className="service-item"
+            >
+              <div className="service-header">
+                <div className="service-icon">
+                  <i className={`fas ${service.icon}`}></i>
                 </div>
-
-                {/* Content */}
-                <div className="flex-1 relative z-10">
-                  <h3 
-                    className="text-2xl font-bold mb-2"
-                    style={{ color: colors.primary }}
-                  >
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-700 text-base leading-relaxed">
-                    {service.description}
-                  </p>
+                <div className="service-title">
+                  <h4>{service.title}</h4>
+                  <p>{service.description}</p>
                 </div>
-              </article>
-            )
-          })}
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* Footer CTA */}
@@ -261,8 +298,8 @@ export default function Services({ location }) {
           <div 
             className="text-center mt-16 p-12 rounded-2xl"
             style={{
-              background: `linear-gradient(135deg, ${isPalmDesert ? '#f0f8f0' : '#f0f9ff'}, ${isPalmDesert ? '#e6f4e6' : '#e0f2fe'})`,
-              border: `2px solid ${isPalmDesert ? 'rgba(74, 96, 35, 0.2)' : 'rgba(26, 86, 219, 0.2)'}`
+              background: 'linear-gradient(135deg, #f0f8f0, #e6f4e6)',
+              border: '2px solid rgba(74, 96, 35, 0.2)'
             }}
           >
             <p 
@@ -276,7 +313,7 @@ export default function Services({ location }) {
               className="inline-block px-8 py-4 text-white font-semibold rounded-full transition-all duration-300 hover:transform hover:-translate-y-1"
               style={{
                 background: colors.gradient,
-                boxShadow: `0 4px 15px ${isPalmDesert ? 'rgba(74, 96, 35, 0.2)' : 'rgba(26, 86, 219, 0.2)'}`
+                boxShadow: '0 4px 15px rgba(74, 96, 35, 0.2)'
               }}
             >
               Schedule Your Free Consultation

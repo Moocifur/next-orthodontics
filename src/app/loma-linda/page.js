@@ -4,6 +4,7 @@ import DoctorProfile from '@/components/DoctorProfile'
 import Service from '@/components/Service'
 import Insurance from '@/components/Insurance'
 import Location from '@/components/Location'
+import Contact from '@/components/Contact'
 import ContactForm from '@/components/ContactForm'
 import Footer from '@/components/Footer'
 
@@ -72,6 +73,8 @@ export default function LomaLinda() {
 
       <Location location="loma-linda" />
 
+      <Contact location="loma-linda"/>
+
       {/* <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <h3 className="text-3xl font-bold text-gray-800 mb-8 text-center">
@@ -99,11 +102,11 @@ export default function LomaLinda() {
         </div>
       </section> */}
 
-      <section id="contact" className="py-16 bg-loma-linda-50">
+      {/* <section id="contact" className="py-16 bg-loma-linda-50">
         <div className="max-w-6xl mx-auto px-6">
           <ContactForm location="loma-linda" />
         </div>
-      </section>
+      </section> */}
 
       <Footer 
         locationName="Wire Wagon Orthodontics"

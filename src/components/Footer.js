@@ -103,7 +103,7 @@ export default function Footer({ location }) {
               />
             </h3>
             <ul className="space-y-2">
-              {['Traditional Braces', 'Clear Aligners', 'Accelerated Orthodontics', 'Retainers', 'Early Treatment'].map((service) => (
+              {['Traditional Braces', 'Clear Aligners', 'Airway Orthodontics', 'Retainers', 'Custom Guards'].map((service) => (
                 <li key={service}>
                   <a 
                     href="#services"
@@ -130,10 +130,21 @@ export default function Footer({ location }) {
               />
             </h3>
             <address className="not-italic space-y-3 opacity-90">
-              <p>
-                73-899 Highway 111<br/>
-                Palm Desert, CA 92260
-              </p>
+              {isPalmDesert ? (
+                <>
+                  <p>
+                    73-899 Highway 111<br/>
+                    Palm Desert, CA 92260
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p>
+                    Mobile RV Unit<br/>
+                    Loma Linda, CA
+                  </p>
+                </>
+              )}
               <p>(909) 799-1825</p>
               <p>carterlaneortho@gmail.com</p>
               <div className="mt-4 pt-4 border-t border-white/10">

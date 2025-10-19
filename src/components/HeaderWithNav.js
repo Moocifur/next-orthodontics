@@ -17,8 +17,14 @@ export default function HeaderWithNav({ locationName, location }) {
   const primaryBtnBg = isPalmDesert ? 'bg-palm-desert-800' : 'bg-loma-linda-800'
   const primaryBtnHover = isPalmDesert ? 'hover:bg-palm-desert-900' : 'hover:bg-loma-linda-900'
   
-  const paymentBtnBg = isPalmDesert ? 'bg-palm-desert-400' : 'bg-loma-linda-400'
-  const paymentBtnHover = isPalmDesert ? 'hover:bg-palm-desert-500' : 'hover:bg-loma-linda-500'
+  // Sandy payment button for both themes
+  const paymentBtnStyle = {
+    backgroundColor: '#d4a574',
+    color: 'white'
+  }
+  const paymentBtnHoverStyle = {
+    backgroundColor: '#bf9660'
+  }
 
   return (
     <>
@@ -30,15 +36,17 @@ export default function HeaderWithNav({ locationName, location }) {
             <div className="flex items-center space-x-6">
               <div className="flex items-center space-x-2">
                 <Phone className="w-4 h-4 text-white/90" />
-                <span>(555) 123-4567</span>
+                <a href="tel:9097991825" className="hover:underline">(909) 799-1825</a>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="w-4 h-4 text-white/90" />
-                <span>info@example.com</span>
+                <a href="mailto:carterlaneortho@gmail.com" className="hover:underline">carterlaneortho@gmail.com</a>
               </div>
               <div className="flex items-center space-x-2">
                 <MapPin className="w-4 h-4 text-white/90" />
-                <span>123 Main St, City, ST 12345</span>
+                <span>
+                  {isPalmDesert ? '73-899 Highway 111, Palm Desert, CA 92260' : 'Mobile RV Unit, Loma Linda, CA'}
+                </span>
               </div>
             </div>
 
@@ -50,7 +58,10 @@ export default function HeaderWithNav({ locationName, location }) {
               </div>
               <a 
                 href="#payment" 
-                className={`${paymentBtnBg} ${paymentBtnHover} text-white px-3 py-1 rounded transition-colors font-medium`}
+                className="px-3 py-1 rounded transition-colors font-medium"
+                style={paymentBtnStyle}
+                onMouseEnter={(e) => e.target.style.backgroundColor = '#bf9660'}
+                onMouseLeave={(e) => e.target.style.backgroundColor = '#d4a574'}
               >
                 Make Payment
               </a>
@@ -183,7 +194,10 @@ export default function HeaderWithNav({ locationName, location }) {
                 </a>
                 <a 
                   href="#payment"
-                  className={`block text-center ${paymentBtnBg} ${paymentBtnHover} text-white px-4 py-3 rounded-lg transition-colors font-medium`}
+                  className="block text-center px-4 py-3 rounded-lg transition-colors font-medium"
+                  style={paymentBtnStyle}
+                  onMouseEnter={(e) => e.target.style.backgroundColor = '#bf9660'}
+                  onMouseLeave={(e) => e.target.style.backgroundColor = '#d4a574'}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Make Payment

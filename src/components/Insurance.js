@@ -61,9 +61,9 @@ export default function Insurance({ location }) {
       <div className="container mx-auto px-6 relative z-10">
         {/* Main Header - Fun & Friendly */}
         <div className="text-center mb-16">
-          <div className="inline-block mb-6">
+          <div className="block mb-6 md:mb-10 lg:mb-12">
             <div 
-              className="w-24 h-24 mx-auto mb-4 rounded-full flex items-center justify-center animate-bounce"
+              className="w-24 h-24 mx-auto mb-4 rounded-full flex items-center justify-center"
               style={{
                 background: colors.iconBg,
                 border: '3px solid rgba(255, 255, 255, 0.4)',
