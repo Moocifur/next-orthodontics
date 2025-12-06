@@ -21,7 +21,7 @@ export default function HeaderWithNav({ locationName, location }) {
 
   // Determine colors based on location
   const isPalmDesert = location === 'palm-desert'
-  const headerBg = isPalmDesert ? 'bg-palm-desert-600' : 'bg-loma-linda-600'
+  const headerBg = isPalmDesert ? 'bg-palm-desert-900' : 'bg-loma-linda-600'
   const buttonText = isPalmDesert ? 'text-palm-desert-600' : 'text-loma-linda-600'
   const buttonHover = isPalmDesert ? 'hover:bg-palm-desert-50' : 'hover:bg-loma-linda-50'
   

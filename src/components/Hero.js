@@ -4,30 +4,35 @@ export default function EnhancedHero({ locationName, subtitle, location }) {
   return (
     <section 
       className={`relative overflow-hidden ${
-        isPalmDesert ? 'py-24 md:py-32 bg-gradient-to-r from-green-800 to-green-700' : 'py-16 md:py-20'
+        isPalmDesert ? 'py-24 md:py-32' : 'py-16 md:py-20'
       }`}
-      style={!isPalmDesert ? {
-        background: 'linear-gradient(to bottom, #e0f7fa, #b2ebf2)',
-        backgroundImage: 'url("/images/curtain.png")',
-        // backgroundSize: 'cover',
-        // backgroundPosition: 'center',
-        // backgroundRepeat: 'no-repeat'
-        backgroundRepeat: 'repeat-x',
-            backgroundPosition: 'top center',
-            backgroundSize: '20% auto',
-            top: '-20px'
-      } : {}}
+      style={isPalmDesert ? {
+        backgroundImage: 'url("/images/palm-background.png")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      } : {
+        backgroundImage: 'url("/images/beach-background.png")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
     >
-      {/* Decorative drape at top - Palm Desert only */}
+      {/* Dark overlay for text readability */}
       {isPalmDesert && (
         <div 
-          className="absolute left-0 w-full h-80 pointer-events-none z-10 opacity-90"
+          className="absolute inset-0 z-0"
           style={{
-            backgroundImage: 'url("/images/drape.png")',
-            backgroundRepeat: 'repeat-x',
-            backgroundPosition: 'top center',
-            backgroundSize: '20% auto',
-            top: '-20px'
+            background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5))',
+          }}
+        />
+      )}
+      
+      {!isPalmDesert && (
+        <div 
+          className="absolute inset-0 z-0"
+          style={{
+            background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.5))',
           }}
         />
       )}
@@ -66,7 +71,6 @@ export default function EnhancedHero({ locationName, subtitle, location }) {
               </div>
             </div>
 
-            {/* Hero Image/Video placeholder */}
             {/* Hero Video */}
             <div className="flex-1 order-1 md:order-2 flex justify-center w-full">
               <div className="w-full max-w-lg">
@@ -163,21 +167,6 @@ export default function EnhancedHero({ locationName, subtitle, location }) {
           </>
         )}
       </div>
-
-      {/* Bottom landscape decoration - Palm Desert only */}
-      {isPalmDesert && (
-        <div className="absolute bottom-0 left-0 right-0 z-30 w-full pointer-events-none" style={{ marginBottom: '-2px' }}>
-          <div 
-            className="w-full h-36"
-            style={{
-              backgroundImage: 'url("/images/top-desert.png")',
-              backgroundSize: 'auto 150px',
-              backgroundPosition: 'bottom center',
-              backgroundRepeat: 'repeat-x'
-            }}
-          />
-        </div>
-      )}
     </section>
   );
 }

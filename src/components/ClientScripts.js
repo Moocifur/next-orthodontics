@@ -182,18 +182,29 @@ export default function ClientScripts() {
   }, [])
 
   const handleRhinogramLoad = () => {
-    console.log('✅ Rhinogram script loaded!')
-    setRhinogramLoaded(true)
+  console.log('✅ Rhinogram script loaded!')
+  setRhinogramLoaded(true)
+  
+  setTimeout(() => {
+    const container = document.getElementById('rhinogram-container')
+    console.log('Container:', container)
+    console.log('Children count:', container?.children.length)
     
-    setTimeout(() => {
-      const container = document.getElementById('rhinogram-container')
-      if (container && container.children.length > 0) {
-        console.log('✅ Rhinogram widget initialized')
-      } else {
-        console.warn('⚠️ Rhinogram widget may not have initialized')
-      }
-    }, 1500)
-  }
+    // CHECK WHAT RHINOGRAM PROVIDES
+    console.log('window.Rhinogram:', window.Rhinogram)
+    console.log('window.rhinogram:', window.rhinogram)
+    console.log('All window keys with "rhin":', 
+      Object.keys(window).filter(k => k.toLowerCase().includes('rhin'))
+    )
+    
+    if (container && container.children.length > 0) {
+      console.log('✅ Rhinogram widget initialized')
+    } else {
+      console.warn('⚠️ Rhinogram widget may not have initialized')
+    }
+  }, 3000)
+}
+
 
   return (
     <>
