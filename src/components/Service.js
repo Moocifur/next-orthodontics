@@ -26,55 +26,55 @@ export default function Services({ location }) {
       id: 'comprehensive',
       title: 'Comprehensive Orthodontics',
       description: 'Comprehensive orthodontic treatment for adults and children',
-      icon: 'fa-teeth'
+      image: '/images/services/braces.png'
     },
     {
       id: 'aesthetic',
       title: 'Aesthetic Options',
       description: 'Clear brackets and Aligners',
-      icon: 'fa-eye'
+      image: '/images/services/aesthetic.png'
     },
     {
       id: 'airway',
       title: 'Airway Orthodontics',
       description: 'Specialized treatment focusing on proper airway development and breathing patterns for overall health',
-      icon: 'fa-lungs'
+      image: '/images/services/airway.png'
     },
     {
       id: 'imaging',
       title: 'Diagnostic Imaging',
       description: 'In house Panoramic and Cephalometric X-Rays',
-      icon: 'fa-x-ray'
+      image: '/images/services/x-ray.png'
     },
     {
       id: 'consultations',
       title: 'Free Consultations',
       description: 'Complimentary Consultations',
-      icon: 'fa-stethoscope'
+      image: '/images/services/consultation.png'
     },
     {
       id: 'guards',
       title: 'Custom Guards',
       description: 'Custom fit Sports guards and Night guards',
-      icon: 'fa-shield-halved'
+      image: '/images/services/guard.png'
     },
     {
       id: 'tmj',
       title: 'TMJ Treatment',
       description: 'TMJ treatment',
-      icon: 'fa-head-side-mask'
+      image: '/images/services/tmj.png'
     },
     {
       id: 'whitening',
       title: 'Teeth Whitening',
       description: 'At home teeth whitening kits',
-      icon: 'fa-tooth'
+      image: '/images/services/whitening.png'
     },
     {
       id: 'retainers',
       title: 'Retainers',
       description: 'Hawley and Lower Fixed retainers',
-      icon: 'fa-teeth-open'
+      image: '/images/services/retainers.png'
     }
   ]
 
@@ -84,25 +84,25 @@ export default function Services({ location }) {
       id: 'traditional-braces',
       title: 'Traditional Braces',
       description: 'Full orthodontic treatment with metal braces, right from our mobile unit.',
-      icon: 'fa-teeth'
+      image: '/images/services/braces.png'
     },
     {
       id: 'clear-aligners',
       title: 'Clear Aligners',
       description: 'Modern invisible aligners fitted and monitored at convenient mobile locations.',
-      icon: 'fa-eye'
+      image: '/images/services/retainers.png'
     },
     {
       id: 'mobile-convenience',
       title: 'Mobile Convenience',
       description: 'We come to you! Check our schedule for Wire Wagon locations and times.',
-      icon: 'fa-rv'
+      image: '/images/services/mobile.png'
     },
     {
       id: 'airway',
       title: 'Airway Orthodontics',
       description: 'Specialized treatment focusing on proper airway development and breathing patterns.',
-      icon: 'fa-lungs'
+      image: '/images/services/airway.png'
     }
   ]
 
@@ -193,13 +193,19 @@ export default function Services({ location }) {
               width: 50px;
               height: 50px;
               background: ${colors.gradient};
-              border-radius: 10px;
+              border-radius: 50%;
               display: flex;
               align-items: center;
               justify-content: center;
-              color: white;
-              font-size: 1.3em;
               flex-shrink: 0;
+              padding: 8px;
+              overflow: hidden;
+            }
+
+            .service-icon img {
+              width: 100%;
+              height: 100%;
+              object-fit: contain;
             }
 
             .service-title {
@@ -245,8 +251,8 @@ export default function Services({ location }) {
               .service-icon {
                 width: 80px;
                 height: 80px;
-                border-radius: 16px;
-                font-size: 2em;
+                border-radius: 50%;
+                padding: 12px;
                 margin-bottom: 20px;
                 box-shadow: 0 8px 20px ${isPalmDesert ? 'rgba(74, 96, 35, 0.3)' : 'rgba(26, 86, 219, 0.3)'};
               }
@@ -265,6 +271,10 @@ export default function Services({ location }) {
                 transform: translateY(-8px);
                 box-shadow: 0 12px 30px ${isPalmDesert ? 'rgba(74, 96, 35, 0.12)' : 'rgba(26, 86, 219, 0.12)'};
               }
+
+              .service-item:hover .service-icon {
+                transform: scale(1.1) rotate(5deg);
+              }
             }
 
             /* Large Desktop: 3 columns */
@@ -282,7 +292,14 @@ export default function Services({ location }) {
             >
               <div className="service-header">
                 <div className="service-icon">
-                  <i className={`fas ${service.icon}`}></i>
+                  <img 
+                    src={service.image} 
+                    alt={service.title}
+                    onError={(e) => {
+                      // Fallback to a default color if image doesn't load
+                      e.target.style.display = 'none'
+                    }}
+                  />
                 </div>
                 <div className="service-title">
                   <h4>{service.title}</h4>

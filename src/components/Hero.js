@@ -58,7 +58,7 @@ export default function EnhancedHero({ locationName, subtitle, location }) {
                   <button
                     className="px-8 py-4 bg-white text-green-800 font-bold rounded-lg hover:bg-green-50 transition-all duration-300 hover:scale-105 shadow-lg text-center"
                   >
-                    Schedule Free Consultation
+                  Request an Appointment
                   </button>
                   
                   <a
