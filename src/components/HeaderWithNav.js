@@ -81,9 +81,13 @@ export default function HeaderWithNav({ locationName, location }) {
       <header className={`sticky top-0 z-50 ${headerBg} text-white shadow-lg`}>
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
-            {/* Logo/Title */}
+            {/* Logo */}
             <Link href="/" className="hover:opacity-90 transition-opacity">
-              <h1 className="text-2xl font-bold">{locationName}</h1>
+              <img 
+                src="/images/new-logo.png" 
+                alt="Lane Orthodontics" 
+                className="h-12 md:h-16 w-auto"
+              />
             </Link>
 
             {/* Desktop Navigation */}
