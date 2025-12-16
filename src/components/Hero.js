@@ -42,8 +42,8 @@ export default function EnhancedHero({ locationName, subtitle, location }) {
         {isPalmDesert ? (
           /* ========== PALM DESERT LAYOUT ========== */
           <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16 max-w-7xl mx-auto">
-            {/* Content */}
-            <div className="flex-1 text-center md:text-left order-2 md:order-1">
+            {/* Content - Order 1 on both mobile and desktop */}
+            <div className="flex-1 text-center md:text-left order-1">
               <div className="p-8 md:p-10">
                 <h1 className="text-white text-3xl md:text-5xl font-bold mb-6 md:mb-8 leading-tight drop-shadow-lg" style={{ fontFamily: "'Shadows Into Light Two', cursive" }}>
                   Your Perfect Smile Begins Here
@@ -58,7 +58,7 @@ export default function EnhancedHero({ locationName, subtitle, location }) {
                   <button
                     className="px-8 py-4 bg-white text-green-800 font-bold rounded-lg hover:bg-green-50 transition-all duration-300 hover:scale-105 shadow-lg text-center"
                   >
-                  Request an Appointment
+                    Schedule Free Consultation
                   </button>
                   
                   <a
@@ -71,8 +71,8 @@ export default function EnhancedHero({ locationName, subtitle, location }) {
               </div>
             </div>
 
-            {/* Hero Video */}
-            <div className="flex-1 order-1 md:order-2 flex justify-center w-full">
+            {/* Hero Video - Order 2 on both mobile and desktop */}
+            <div className="flex-1 order-2 flex justify-center w-full">
               <div className="w-full max-w-lg">
                 <video 
                   autoPlay 
