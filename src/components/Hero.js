@@ -1,5 +1,13 @@
+'use client'
+
 export default function EnhancedHero({ locationName, subtitle, location }) {
   const isPalmDesert = location === 'palm-desert';
+
+  const handleAppointmentClick = () => {
+    if (typeof window !== 'undefined' && window.openAppointmentForm) {
+      window.openAppointmentForm()
+    }
+  }
   
   return (
     <section 
@@ -56,9 +64,10 @@ export default function EnhancedHero({ locationName, subtitle, location }) {
                 {/* CTA Buttons - Palm Desert */}
                 <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                   <button
+                    onClick={handleAppointmentClick}
                     className="px-8 py-4 bg-white text-green-800 font-bold rounded-lg hover:bg-green-50 transition-all duration-300 hover:scale-105 shadow-lg text-center"
                   >
-                    Schedule Free Consultation
+                    Request An Appointment
                   </button>
                   
                   <a
@@ -137,9 +146,10 @@ export default function EnhancedHero({ locationName, subtitle, location }) {
                 {/* CTA Buttons - Loma Linda */}
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <button
+                    onClick={handleAppointmentClick}
                     className="px-6 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-all duration-300 hover:scale-105 shadow-lg"
                   >
-                    Schedule Free Consultation
+                    Request An Appointment
                   </button>
                   
                   <a

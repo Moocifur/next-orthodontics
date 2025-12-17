@@ -210,7 +210,7 @@ export default function Insurance({ location }) {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="#contact"
+                href="tel:9097991825"
                 className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white font-bold rounded-full transition-all duration-300 hover:transform hover:-translate-y-1 hover:scale-105"
                 style={{
                   color: colors.primary,
@@ -218,11 +218,11 @@ export default function Insurance({ location }) {
                 }}
               >
                 <i className="fas fa-envelope"></i>
-                Contact Us About Insurance
+                Call or Text Us
               </a>
               
               <a
-                href="#contact"
+                href="mailto:carterlaneortho@gmail.com"
                 className="inline-flex items-center justify-center gap-3 px-8 py-4 font-bold rounded-full transition-all duration-300 hover:transform hover:-translate-y-1 hover:scale-105"
                 style={{
                   background: 'rgba(255, 255, 255, 0.2)',
@@ -231,8 +231,8 @@ export default function Insurance({ location }) {
                   backdropFilter: 'blur(10px)'
                 }}
               >
-                <i className="fas fa-calendar"></i>
-                Schedule Free Consultation
+                <i className="fas fa-envelope"></i>
+                Email Us
               </a>
             </div>
           </div>

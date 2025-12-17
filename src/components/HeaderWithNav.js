@@ -19,6 +19,13 @@ export default function HeaderWithNav({ locationName, location }) {
     }
   }
 
+  // Scroll to top function
+  const scrollToTop = () => {
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+
   // Determine colors based on location
   const isPalmDesert = location === 'palm-desert'
   const headerBg = isPalmDesert ? 'bg-palm-desert-900' : 'bg-loma-linda-600'
@@ -82,19 +89,34 @@ export default function HeaderWithNav({ locationName, location }) {
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             {/* Logo */}
-            <Link href="/" className="hover:opacity-90 transition-opacity">
+            {/* <Link href="/" className="hover:opacity-90 transition-opacity">
               <img 
                 src="/images/new-logo.png" 
                 alt="Lane Orthodontics" 
                 className="h-12 md:h-16 w-auto"
               />
-            </Link>
+            </Link> */}
+
+            <button 
+              onClick={scrollToTop}
+              className="hover:opacity-90 transition-opacity focus:outline-none"
+              aria-label="Scroll to top"
+            >
+              <img 
+                src="/images/new-logo.png" 
+                alt="Lane Orthodontics" 
+                className="h-12 md:h-16 w-auto"
+              />
+            </button>
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-6">
-              <Link href="/" className="hover:underline">
+              <button 
+                onClick={scrollToTop}
+                className="hover:underline"
+              >
                 Home
-              </Link>
+              </button>
               <a href="#about" className="hover:underline">
                 About
               </a>
@@ -151,13 +173,15 @@ export default function HeaderWithNav({ locationName, location }) {
           {/* Mobile Menu */}
           {isMenuOpen && (
             <nav className="lg:hidden mt-4 pb-4 space-y-3 border-t border-white/20 pt-4">
-              <Link 
-                href="/" 
-                className="block hover:underline"
-                onClick={() => setIsMenuOpen(false)}
+              <button 
+                onClick={() => {
+                  scrollToTop()
+                  setIsMenuOpen(false)
+                }}
+                className="block hover:underline w-full text-left"
               >
                 Home
-              </Link>
+              </button>
               <a 
                 href="#about" 
                 className="block hover:underline"

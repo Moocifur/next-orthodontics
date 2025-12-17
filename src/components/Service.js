@@ -20,7 +20,7 @@ export default function Services({ location }) {
     bgGradient: 'linear-gradient(to bottom, #eff6ff, #dbeafe)'
   }
 
-  // Palm Desert Services (all in one)
+  // Palm Desert Services (includes X-rays)
   const palmDesertServices = [
     {
       id: 'comprehensive',
@@ -44,6 +44,12 @@ export default function Services({ location }) {
       id: 'imaging',
       title: 'Diagnostic Imaging',
       description: 'In house Panoramic and Cephalometric X-Rays',
+      image: '/images/services/x-ray.png'
+    },
+    {
+      id: 'xrays',
+      title: 'X-Rays',
+      description: 'Advanced digital X-ray imaging for precise diagnosis and treatment planning',
       image: '/images/services/x-ray.png'
     },
     {
@@ -78,31 +84,61 @@ export default function Services({ location }) {
     }
   ]
 
-  // Loma Linda Services (simpler, no tabs)
+  // Loma Linda Services (all Palm Desert services minus X-rays, plus mobile convenience)
   const lomaLindaServices = [
     {
-      id: 'traditional-braces',
-      title: 'Traditional Braces',
-      description: 'Full orthodontic treatment with metal braces, right from our mobile unit.',
+      id: 'comprehensive',
+      title: 'Comprehensive Orthodontics',
+      description: 'Comprehensive orthodontic treatment for adults and children',
       image: '/images/services/braces.png'
     },
     {
-      id: 'clear-aligners',
-      title: 'Clear Aligners',
-      description: 'Modern invisible aligners fitted and monitored at convenient mobile locations.',
-      image: '/images/services/retainers.png'
-    },
-    {
-      id: 'mobile-convenience',
-      title: 'Mobile Convenience',
-      description: 'We come to you! Check our schedule for Wire Wagon locations and times.',
-      image: '/images/services/mobile.png'
+      id: 'aesthetic',
+      title: 'Aesthetic Options',
+      description: 'Clear brackets and Aligners',
+      image: '/images/services/aesthetic.png'
     },
     {
       id: 'airway',
       title: 'Airway Orthodontics',
-      description: 'Specialized treatment focusing on proper airway development and breathing patterns.',
+      description: 'Specialized treatment focusing on proper airway development and breathing patterns for overall health',
       image: '/images/services/airway.png'
+    },
+    {
+      id: 'mobile-convenience',
+      title: 'Mobile Convenience',
+      description: 'We come to you! Check our schedule for Wire Wagon locations and times',
+      image: '/images/services/mobile.png'
+    },
+    {
+      id: 'consultations',
+      title: 'Free Consultations',
+      description: 'Complimentary Consultations',
+      image: '/images/services/consultation.png'
+    },
+    {
+      id: 'guards',
+      title: 'Custom Guards',
+      description: 'Custom fit Sports guards and Night guards',
+      image: '/images/services/guard.png'
+    },
+    {
+      id: 'tmj',
+      title: 'TMJ Treatment',
+      description: 'TMJ treatment',
+      image: '/images/services/tmj.png'
+    },
+    {
+      id: 'whitening',
+      title: 'Teeth Whitening',
+      description: 'At home teeth whitening kits',
+      image: '/images/services/whitening.png'
+    },
+    {
+      id: 'retainers',
+      title: 'Retainers',
+      description: 'Hawley and Lower Fixed retainers',
+      image: '/images/services/retainers.png'
     }
   ]
 
@@ -311,7 +347,7 @@ export default function Services({ location }) {
         </div>
 
         {/* Footer CTA */}
-        {isPalmDesert && (
+        {/* {isPalmDesert && (
           <div 
             className="text-center mt-16 p-12 rounded-2xl"
             style={{
@@ -336,7 +372,7 @@ export default function Services({ location }) {
               Schedule Your Free Consultation
             </a>
           </div>
-        )}
+        )} */}
       </div>
     </section>
   )

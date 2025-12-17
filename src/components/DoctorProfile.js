@@ -30,7 +30,8 @@ export default function DoctorProfile({ location }) {
   const isPalmDesert = location === 'palm-desert'
 
   return (
-    <section 
+    <section
+      id="about"
       className="py-20 relative overflow-hidden"
       style={{
         backgroundColor: isPalmDesert ? '#f5efe0' : '#e0f7fa',
