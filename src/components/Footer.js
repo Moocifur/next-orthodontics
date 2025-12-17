@@ -1,9 +1,18 @@
+'use client'
+
 export default function Footer({ location }) {
   const isPalmDesert = location === 'palm-desert'
 
   const footerBg = isPalmDesert ? '#2c4312' : '#d3aa69'
   const footerText = isPalmDesert ? '#f3eadc' : '#ffffff'
   const accentColor = isPalmDesert ? '#e09c54' : '#1a56db'
+
+  // Scroll to top function
+  const scrollToTop = () => {
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
 
   return (
     <footer 
@@ -76,17 +85,60 @@ export default function Footer({ location }) {
               />
             </h3>
             <ul className="space-y-2">
-              {['Home', 'About Us', 'Services', 'Insurance', 'Location', 'Contact'].map((link) => (
-                <li key={link}>
-                  <a 
-                    href={`#${link.toLowerCase().replace(' ', '-')}`}
-                    className="opacity-90 hover:opacity-100 transition-all duration-300 hover:translate-x-1 inline-block"
-                    style={{ color: footerText }}
-                  >
-                    {link}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <button 
+                  onClick={scrollToTop}
+                  className="opacity-90 hover:opacity-100 transition-all duration-300 hover:translate-x-1 inline-block text-left"
+                  style={{ color: footerText, background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
+                >
+                  Home
+                </button>
+              </li>
+              <li>
+                <a 
+                  href="#about"
+                  className="opacity-90 hover:opacity-100 transition-all duration-300 hover:translate-x-1 inline-block"
+                  style={{ color: footerText }}
+                >
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#services"
+                  className="opacity-90 hover:opacity-100 transition-all duration-300 hover:translate-x-1 inline-block"
+                  style={{ color: footerText }}
+                >
+                  Services
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#insurance"
+                  className="opacity-90 hover:opacity-100 transition-all duration-300 hover:translate-x-1 inline-block"
+                  style={{ color: footerText }}
+                >
+                  Insurance
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#location"
+                  className="opacity-90 hover:opacity-100 transition-all duration-300 hover:translate-x-1 inline-block"
+                  style={{ color: footerText }}
+                >
+                  Location
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#contact"
+                  className="opacity-90 hover:opacity-100 transition-all duration-300 hover:translate-x-1 inline-block"
+                  style={{ color: footerText }}
+                >
+                  Contact
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -103,17 +155,51 @@ export default function Footer({ location }) {
               />
             </h3>
             <ul className="space-y-2">
-              {['Traditional Braces', 'Clear Aligners', 'Airway Orthodontics', 'Retainers', 'Custom Guards'].map((service) => (
-                <li key={service}>
-                  <a 
-                    href="#services"
-                    className="opacity-90 hover:opacity-100 transition-all duration-300 hover:translate-x-1 inline-block"
-                    style={{ color: footerText }}
-                  >
-                    {service}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <a 
+                  href="#services"
+                  className="opacity-90 hover:opacity-100 transition-all duration-300 hover:translate-x-1 inline-block"
+                  style={{ color: footerText }}
+                >
+                  Traditional Braces
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#services"
+                  className="opacity-90 hover:opacity-100 transition-all duration-300 hover:translate-x-1 inline-block"
+                  style={{ color: footerText }}
+                >
+                  Clear Aligners
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#services"
+                  className="opacity-90 hover:opacity-100 transition-all duration-300 hover:translate-x-1 inline-block"
+                  style={{ color: footerText }}
+                >
+                  Airway Orthodontics
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#services"
+                  className="opacity-90 hover:opacity-100 transition-all duration-300 hover:translate-x-1 inline-block"
+                  style={{ color: footerText }}
+                >
+                  Retainers
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#services"
+                  className="opacity-90 hover:opacity-100 transition-all duration-300 hover:translate-x-1 inline-block"
+                  style={{ color: footerText }}
+                >
+                  Custom Guards
+                </a>
+              </li>
             </ul>
           </div>
 
