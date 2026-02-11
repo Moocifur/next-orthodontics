@@ -1,19 +1,16 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import Script from 'next/script'
 
 export default function ClientScripts() {
   const [rhinogramLoaded, setRhinogramLoaded] = useState(false)
 
   useEffect(() => {
-    // Simple modal lightbox implementation - no JotForm scripts needed!
+    // ========== JOTFORM LIGHTBOX SETUP ==========
     const createLightbox = (formUrl, title) => {
-      // Remove any existing lightbox first
       const existing = document.querySelector('.custom-lightbox-overlay')
       if (existing) existing.remove()
 
-      // Create overlay
       const overlay = document.createElement('div')
       overlay.className = 'custom-lightbox-overlay'
       overlay.style.cssText = `
@@ -30,7 +27,6 @@ export default function ClientScripts() {
         animation: fadeIn 0.2s ease-in;
       `
 
-      // Create modal container
       const modal = document.createElement('div')
       modal.style.cssText = `
         position: relative;
@@ -46,7 +42,6 @@ export default function ClientScripts() {
         animation: slideIn 0.3s ease-out;
       `
 
-      // Create header
       const header = document.createElement('div')
       header.style.cssText = `
         padding: 20px;
@@ -96,7 +91,6 @@ export default function ClientScripts() {
       header.appendChild(titleEl)
       header.appendChild(closeBtn)
 
-      // Create iframe container
       const iframeContainer = document.createElement('div')
       iframeContainer.style.cssText = `
         flex: 1;
@@ -104,7 +98,6 @@ export default function ClientScripts() {
         border-radius: 0 0 12px 12px;
       `
 
-      // Create iframe
       const iframe = document.createElement('iframe')
       iframe.src = formUrl
       iframe.style.cssText = `
@@ -120,7 +113,6 @@ export default function ClientScripts() {
       modal.appendChild(iframeContainer)
       overlay.appendChild(modal)
 
-      // Close handlers
       const close = () => {
         overlay.style.animation = 'fadeOut 0.2s ease-out'
         setTimeout(() => overlay.remove(), 200)
@@ -138,7 +130,6 @@ export default function ClientScripts() {
         }
       })
 
-      // Add animations
       const style = document.createElement('style')
       style.textContent = `
         @keyframes fadeIn {
@@ -162,7 +153,6 @@ export default function ClientScripts() {
       document.body.appendChild(overlay)
     }
 
-    // Global functions to open forms
     window.openAppointmentForm = () => {
       console.log('📝 Opening appointment form...')
       createLightbox('https://form.jotform.com/201747138890158', 'Appointment Request')
@@ -179,46 +169,76 @@ export default function ClientScripts() {
     }
 
     console.log('✅ Form functions ready')
-  }, [])
 
-  const handleRhinogramLoad = () => {
-  console.log('✅ Rhinogram script loaded!')
-  setRhinogramLoaded(true)
-  
-  setTimeout(() => {
-    const container = document.getElementById('rhinogram-container')
-    console.log('Container:', container)
-    console.log('Children count:', container?.children.length)
-    
-    // CHECK WHAT RHINOGRAM PROVIDES
-    console.log('window.Rhinogram:', window.Rhinogram)
-    console.log('window.rhinogram:', window.rhinogram)
-    console.log('All window keys with "rhin":', 
-      Object.keys(window).filter(k => k.toLowerCase().includes('rhin'))
-    )
-    
-    if (container && container.children.length > 0) {
-      console.log('✅ Rhinogram widget initialized')
-    } else {
-      console.warn('⚠️ Rhinogram widget may not have initialized')
+    // ========== RHINOGRAM WIDGET SETUP ==========
+    // Manually initialize the Rhinogram widget since their embed.js 
+    // relies on DOMContentLoaded (which has already fired in Next.js)
+    const RHINOGRAM_DOMAIN = 'https://app.rhinogram.com/widget'
+    const RHINOGRAM_WEB_FORM_ID = '10ef415e-070c-4710-b08a-e0e26ab542e3'
+
+    try {
+      // Create the widget container and iframe (same as their embed.js does)
+      const rhinoDiv = document.createElement('div')
+      rhinoDiv.setAttribute('class', 'rhinogram-widget-container')
+
+      const rhinoIframe = document.createElement('iframe')
+      rhinoIframe.setAttribute('class', 'rhinogram-widget')
+      rhinoIframe.setAttribute('scrolling', 'no')
+      rhinoIframe.setAttribute('frameborder', '0')
+      rhinoIframe.setAttribute('seamless', 'seamless')
+
+      rhinoDiv.appendChild(rhinoIframe)
+      document.body.appendChild(rhinoDiv)
+
+      rhinoIframe.addEventListener('load', function () {
+        rhinoIframe.contentWindow.postMessage('loaded', '*')
+      })
+
+      rhinoIframe.src = RHINOGRAM_DOMAIN + '/index.html?webFormId=' + RHINOGRAM_WEB_FORM_ID
+
+      // Load Rhinogram's stylesheet
+      let rhinoStyled = false
+
+      // Listen for messages from the Rhinogram iframe to resize/position it
+      const handleRhinoMessage = (e) => {
+        if (e.data && e.data.rhinogram && !rhinoStyled) {
+          rhinoStyled = true
+          const link = document.createElement('link')
+          link.rel = 'stylesheet'
+          link.type = 'text/css'
+          link.href = RHINOGRAM_DOMAIN + '/style.css'
+          document.head.appendChild(link)
+        }
+
+        if (e.data && e.data.rhinogram) {
+          rhinoDiv.style.width = e.data.rhinogram.width + 'px'
+          rhinoDiv.style.height = e.data.rhinogram.height + 'px'
+          rhinoIframe.style.width = e.data.rhinogram.width + 'px'
+          rhinoIframe.style.height = e.data.rhinogram.height + 'px'
+          rhinoDiv.classList.add('rhinogram-widget--' + e.data.rhinogram.position)
+        }
+      }
+
+      window.addEventListener('message', handleRhinoMessage)
+
+      setRhinogramLoaded(true)
+      console.log('✅ Rhinogram widget manually initialized')
+
+      // Cleanup on unmount
+      return () => {
+        window.removeEventListener('message', handleRhinoMessage)
+        if (rhinoDiv.parentNode) {
+          rhinoDiv.parentNode.removeChild(rhinoDiv)
+        }
+      }
+    } catch (err) {
+      console.error('❌ Rhinogram initialization error:', err)
     }
-  }, 3000)
-}
-
+  }, [])
 
   return (
     <>
-      {/* Rhinogram Widget */}
-      <div id="rhinogram-container"></div>
-      <Script 
-        id="rhinogram-embed" 
-        src="https://app.rhinogram.com/widget/embed.js?id=10ef415e-070c-4710-b08a-e0e26ab542e3"
-        strategy="afterInteractive"
-        onLoad={handleRhinogramLoad}
-        onError={(e) => console.error('❌ Rhinogram error:', e)}
-      />
-
-      {/* Debug Panel */}
+      {/* Debug Panel - dev only */}
       {process.env.NODE_ENV === 'development' && (
         <div style={{
           position: 'fixed',
