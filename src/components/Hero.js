@@ -8,7 +8,13 @@ export default function EnhancedHero({ locationName, subtitle, location }) {
       window.openAppointmentForm()
     }
   }
-  
+
+  const handlePaymentClick = () => {
+    if (typeof window !== 'undefined' && window.openPaymentForm) {
+      window.openPaymentForm()
+    }
+  }
+
   return (
     <section 
       className={`relative overflow-hidden ${
@@ -70,12 +76,12 @@ export default function EnhancedHero({ locationName, subtitle, location }) {
                     Request An Appointment
                   </button>
                   
-                  <a
-                    href="#insurance"
-                    className="px-8 py-4 bg-transparent text-white font-bold rounded-lg border-2 border-white hover:bg-white/10 transition-all duration-300 hover:scale-105 shadow-lg text-center inline-block"
+                  <button
+                    onClick={handlePaymentClick}
+                    className="px-8 py-4 bg-transparent text-white font-bold rounded-lg border-2 border-white hover:bg-white/10 transition-all duration-300 hover:scale-105 shadow-lg text-center"
                   >
-                    Payment Options
-                  </a>
+                    Make Payment
+                  </button>
                 </div>
               </div>
             </div>
@@ -152,12 +158,12 @@ export default function EnhancedHero({ locationName, subtitle, location }) {
                     Request An Appointment
                   </button>
                   
-                  <a
-                    href="#insurance"
+                  <button
+                    onClick={handlePaymentClick}
                     className="px-6 py-3 bg-transparent text-blue-900 font-bold rounded-lg border-2 border-blue-900 hover:bg-blue-900/10 transition-all duration-300 hover:scale-105 shadow-lg"
                   >
-                    Payment Options
-                  </a>
+                    Make Payment
+                  </button>
                 </div>
               </div>
               
