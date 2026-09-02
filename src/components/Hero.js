@@ -1,5 +1,7 @@
 'use client'
 
+const PAYMENT_ENABLED = false
+
 export default function EnhancedHero({ locationName, subtitle, location }) {
   const isPalmDesert = location === 'palm-desert';
 
@@ -76,12 +78,14 @@ export default function EnhancedHero({ locationName, subtitle, location }) {
                     Request An Appointment
                   </button>
                   
-                  <button
-                    onClick={handlePaymentClick}
-                    className="px-8 py-4 bg-transparent text-white font-bold rounded-lg border-2 border-white hover:bg-white/10 transition-all duration-300 hover:scale-105 shadow-lg text-center"
-                  >
-                    Make Payment
-                  </button>
+                  {PAYMENT_ENABLED && (
+                    <button
+                      onClick={handlePaymentClick}
+                      className="px-8 py-4 bg-transparent text-white font-bold rounded-lg border-2 border-white hover:bg-white/10 transition-all duration-300 hover:scale-105 shadow-lg text-center"
+                    >
+                      Make Payment
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
@@ -158,12 +162,14 @@ export default function EnhancedHero({ locationName, subtitle, location }) {
                     Request An Appointment
                   </button>
                   
-                  <button
-                    onClick={handlePaymentClick}
-                    className="px-6 py-3 bg-transparent text-blue-900 font-bold rounded-lg border-2 border-blue-900 hover:bg-blue-900/10 transition-all duration-300 hover:scale-105 shadow-lg"
-                  >
-                    Make Payment
-                  </button>
+                  {PAYMENT_ENABLED && (
+                    <button
+                      onClick={handlePaymentClick}
+                      className="px-6 py-3 bg-transparent text-blue-900 font-bold rounded-lg border-2 border-blue-900 hover:bg-blue-900/10 transition-all duration-300 hover:scale-105 shadow-lg"
+                    >
+                      Make Payment
+                    </button>
+                  )}
                 </div>
               </div>
               

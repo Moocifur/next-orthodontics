@@ -155,7 +155,7 @@ export default function ClientScripts() {
 
     window.openAppointmentForm = () => {
       console.log('📝 Opening appointment form...')
-      createLightbox('https://form.jotform.com/201747138890158', 'Appointment Request')
+      window.open('https://forms.gle/iNnBR2aFn64bq8X99', '_blank', 'noopener,noreferrer')
     }
 
     window.openPaymentForm = () => {
