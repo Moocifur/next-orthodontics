@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Phone, Mail, Clock, MapPin, Menu, X, MapPinned } from 'lucide-react'
 
-const PAYMENT_ENABLED = false
+const PAYMENT_ENABLED = true
 
 export default function HeaderWithNav({ locationName, location }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -75,14 +75,16 @@ export default function HeaderWithNav({ locationName, location }) {
                 <span>Mon-Fri 9AM-5PM</span>
               </div>
               {PAYMENT_ENABLED && (
-                <button
-                  onClick={handlePaymentClick}
-                  className="px-3 py-1 rounded transition-colors font-medium hover:opacity-90"
-                  style={paymentBtnStyle}
-                >
-                  Make Payment
-                </button>
-              )}
+  <a
+    href="https://laneorthodontics.squarespace.com/pay-link/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="px-3 py-1 rounded transition-colors font-medium hover:opacity-90"
+    style={paymentBtnStyle}
+  >
+    Make Payment
+  </a>
+)}
             </div>
           </div>
         </div>
@@ -234,17 +236,17 @@ export default function HeaderWithNav({ locationName, location }) {
                   Book Appointment
                 </button>
                 {PAYMENT_ENABLED && (
-                  <button
-                    onClick={() => {
-                      handlePaymentClick()
-                      setIsMenuOpen(false)
-                    }}
-                    className="block w-full text-center px-4 py-3 rounded-lg transition-colors font-medium hover:opacity-90"
-                    style={paymentBtnStyle}
-                  >
-                    Make Payment
-                  </button>
-                )}
+  <a
+    href="https://laneorthodontics.squarespace.com/pay-link/"
+    target="_blank"
+    rel="noopener noreferrer"
+    onClick={() => setIsMenuOpen(false)}
+    className="block w-full text-center px-4 py-3 rounded-lg transition-colors font-medium hover:opacity-90"
+    style={paymentBtnStyle}
+  >
+    Make Payment
+  </a>
+)}
                 <Link 
                   href={isPalmDesert ? '/loma-linda' : '/palm-desert'}
                   className={`flex items-center justify-center gap-2 bg-white ${buttonText} px-4 py-3 rounded-lg ${buttonHover} transition-colors font-medium`}
